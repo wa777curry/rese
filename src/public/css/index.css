@@ -1,0 +1,55 @@
+.shop__list {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    margin: 0 -10px;
+}
+
+.shop__list--card {
+    position: relative;
+    /* 画像がはみ出た部分を非表示にする */
+    overflow: hidden;
+    margin: 10px auto;
+    width: 300px;
+    background: #fff;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.shop__list--img {
+    position: relative;
+    width: 100%;
+    padding-top: 55%;
+    overflow: hidden;
+}
+
+.shop__list--img img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: auto;
+    border-radius: 5px 5px 0 0;
+}
+
+.shop__content {
+    padding: 15px;
+}
+
+.shop__content--name {
+    font-size: 110%;
+    font-weight: bold;
+}
+
+.shop__content--tag {
+    display: inline-block;
+    font-size: 85%;
+}
+
+.shop__content--detail {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

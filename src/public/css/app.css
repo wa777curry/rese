@@ -1,0 +1,131 @@
+body {
+    background-color: #f4eade;
+    padding: 20px 40px;
+}
+
+.header__menu {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    position: relative;
+}
+
+/* チェックボックスを非表示にする */
+.drawer__hidden {
+    display: none;
+}
+
+/* ハンバーガーアイコンの設置スペース */
+.drawer__open {
+    display: flex;
+    height: 45px;
+    width: 45px;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    /* 重なり順を一番上にする */
+    z-index: 100;
+    cursor: pointer;
+    background-color: #2988bc;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* ハンバーガーメニューのアイコン */
+.drawer__open span,
+.drawer__open span:before,
+.drawer__open span:after {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 25px;
+    border-radius: 5px;
+    background: #fff;
+    transition: 0.2s;
+    position: absolute;
+}
+
+/* 三本線の一番上の棒の位置調整 */
+.drawer__open span:before {
+    bottom: 8px;
+}
+
+/* 三本線の一番下の棒の位置調整 */
+.drawer__open span:after {
+    top: 8px;
+}
+
+/* アイコンがクリックされたら真ん中の線を透明にする */
+#drawer__input:checked~.drawer__open span {
+    background: rgba(255, 255, 255, 0);
+}
+
+/* アイコンがクリックされたらアイコンが×印になように上下の線を回転 */
+#drawer__input:checked~.drawer__open span::before {
+    bottom: 0;
+    transform: rotate(45deg);
+}
+
+#drawer__input:checked~.drawer__open span::after {
+    top: 0;
+    transform: rotate(-45deg);
+}
+
+/* メニューのデザイン*/
+.nav__content {
+    padding-top: 10%;
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    right: 100%;
+    /* メニューを画面の外に飛ばす */
+    z-index: 99;
+    background: #fff;
+    transition: .5s;
+    text-align: center;
+}
+
+/* メニュー黒ポチを消す */
+.nav__list {
+    list-style: none;
+}
+
+.nav__item {
+    margin-top: 15px;
+    color: #2988bc;
+    font-size: 150%;
+}
+
+/* アイコンがクリックされたらメニューを表示 */
+#drawer__input:checked~.nav__content {
+    right: 0;
+    /* メニューを画面に入れる */
+}
+
+.header__logo {
+    margin-right: auto;
+    padding-left: 20px;
+    color: #2988bc;
+    font-size: 170%;
+    font-weight: bold;
+}
+
+main {
+    margin: 20px auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.button {
+    padding: 5px 20px;
+    color: #fff;
+    background-color: #2988bc;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

@@ -1,0 +1,34 @@
+.header__search {
+    background: #fff;
+    padding: 8px;
+    border: none;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+}
+
+.search__form {
+    display: flex;
+    align-items: center;
+}
+
+.select__area,
+.select__genre,
+.keyword {
+    border: none;
+    padding: 5px;
+}
+
+.search__form select {
+    border-right: 1px solid #ddd;
+    padding-right: 15px;
+}
+
+.search__form .keyword {
+    border-right: none;
+    width: 250px;
+}
+
+.search__icon {
+    margin: 0 3px;
+    color: #ccc;
+}
