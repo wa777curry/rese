@@ -65,7 +65,12 @@
             </div>
 
             <div class="reservation__form--btn">
-                <a href="{{ route('done') }}"><input type="submit" value="予約する"></a>
+                @guest
+                <a href="{{ route('postLogin') }}"><button type="button">予約する</button></a>
+                @endguest
+                @auth
+                <a href="{{ route('done') }}"><button type="button">予約する</button></a>
+                @endauth
             </div>
         </form>
     </div>

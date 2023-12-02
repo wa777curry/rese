@@ -35,9 +35,9 @@
 
         <!-- お気に入り店舗 -->
         <div class="mypage__favorite">
-            <!-- ※後で修正※ { Auth::user()->name }さん -->
-            <div class="greeting__name">ユーザーさん</div>
+            <div class="greeting__name">{{ Auth::user()->username }}さん</div>
 
+            <!-- あとでDBのタグに変更すること -->
             <div class="mypage__main--ttl">お気に入り店舗</div>
             <div class="mypage__shop">
                 <div class="shop__list--card">

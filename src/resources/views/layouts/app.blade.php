@@ -25,13 +25,13 @@
                         <!-- メニュー（未ログイン時） -->
                         @guest
                         <li class="nav__item"><a href="{{ route('index') }}">Home</a></li>
-                        <li class="nav__item"><a href="{{ route('register') }}">Registration</a></li>
-                        <li class="nav__item"><a href="{{ route('login') }}">Login</a></li>
+                        <li class="nav__item"><a href="{{ route('getRegister') }}">Registration</a></li>
+                        <li class="nav__item"><a href="{{ route('getLogin') }}">Login</a></li>
                         @endguest
                         <!-- メニュー（ログイン時） -->
                         @auth
                         <li class="nav__item"><a href="{{ route('index') }}">Home</a></li>
-                        <li class="nav__item"><a href="">Logout</a></li>
+                        <li class="nav__item"><a href="{{ url('logout') }}">Logout</a></li>
                         <li class="nav__item"><a href="{{ route('mypage') }}">Mypage</a></li>
                         @endauth
                     </ul>

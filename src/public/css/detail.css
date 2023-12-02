@@ -94,6 +94,6 @@
     cursor: pointer;
 }
 
-.reservation__form--btn input {
+.reservation__form--btn button {
     all: unset;
 }

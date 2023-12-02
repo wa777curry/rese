@@ -15,20 +15,23 @@ use App\Http\Controllers\ShopController;
 |
 */
 
-Route::get('/login', [UserController::class, 'showLoginForm'])->name('login');
-Route::post('/login', [UserController::class, 'login'])->name('login.submit');
+Route::get('/login', [UserController::class, 'getLogin'])->name('getLogin');
+Route::post('/login', [UserController::class, 'postLogin'])->name('postLogin');
 
-Route::get('/register', [UserController::class, 'showRegisterForm'])->name('register');
-Route::post('/register', [UserController::class, 'register'])->name('register.submit');
-
-Route::get('/thanks', [UserController::class, 'thanks']);
+Route::get('/register', [UserController::class, 'getRegister'])->name('getRegister');
+Route::post('/register', [UserController::class, 'postRegister'])->name('postRegister');
 
 Route::get('/', [ShopController::class, 'index'])->name('index');
-
 Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
 
-Route::post('/reservation', [ShopController::class, 'submit'])->name('reservation.submit');
+Route::middleware('auth')->group(function () {
+    Route::get('/thanks', [UserController::class, 'thanks']);
 
-Route::get('/done', [ShopController::class, 'done'])->name('done');
+    Route::get('/logout', [UserController::class, 'logout']);
 
-Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
+    Route::post('/reservation', [ShopController::class, 'submit'])->name('reservation.submit');
+
+    Route::get('/done', [ShopController::class, 'done'])->name('done');
+
+    Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
+});

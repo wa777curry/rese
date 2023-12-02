@@ -24,7 +24,7 @@
     justify-content: center;
     width: 360px;
     height: 210px;
-    margin: 30px auto;
+    margin: 30px auto 20px auto;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
@@ -79,6 +79,6 @@
 
 .form__error {
     text-align: center;
-    font-size: 90%;
+    font-size: 85%;
     color: #d1522f;
 }

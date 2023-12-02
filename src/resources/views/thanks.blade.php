@@ -10,7 +10,7 @@
         会員登録ありがとうございます
     </div>
     <div class="message__form--text">
-        <a href="{{ route('login') }}">
+        <a href="{{ route('getLogin') }}">
             <button class="button" type="submit">ログインする</button>
         </a>
     </div>
