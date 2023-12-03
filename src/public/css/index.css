@@ -1,6 +1,6 @@
 .shop__list {
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
     flex-wrap: wrap;
     margin: 0 -10px;
 }
@@ -9,8 +9,8 @@
     position: relative;
     /* 画像がはみ出た部分を非表示にする */
     overflow: hidden;
-    margin: 10px auto;
-    width: 300px;
+    margin: 10px;
+    width: 342px;
     background: #fff;
     border: none;
     border-radius: 5px;

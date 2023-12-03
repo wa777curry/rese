@@ -22,9 +22,11 @@ class User extends Authenticatable
     //    'two_factor_secret',
     //];
 
-    /*
-    public function attendances() {
-        return $this->hasMany(Attendance::class);
+    public function mypages() {
+        return $this->hasMany(Mypage::class);
     }
-    */
+
+    public function reservations() {
+        return $this->hasMany(Reservation::class);
+    }
 }

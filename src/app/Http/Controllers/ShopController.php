@@ -2,14 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ShopRequest;
+use App\Models\Shop;
 use Illuminate\Http\Request;
-use PhpParser\Builder\Function_;
-use PhpParser\Node\Expr\FuncCall;
 
 class ShopController extends Controller
 {
     public function index() {
-        return view('index');
+        $shops = Shop::all(); // すべての店舗データを取得
+        return view('index', compact('shops'));
     }
 
     public function detail() {
@@ -34,5 +35,21 @@ class ShopController extends Controller
     public function done() {
         return view('done');
     }
-}
 
+    public function getManagement() {
+        return view('management');
+    }
+
+    // 店舗情報アップロード
+    public function postManagement(ShopRequest $request) {
+        Shop::create([
+            'shop_name' => $request->input('shop_name'),
+            'area' => $request->input('area'),
+            'genre' => $request->input('genre'),
+            'shop_summary' => $request->input('shop_summary'),
+            'image_url' => $request->input('image_url')
+        ]);
+        return redirect()->route('detail');
+    }
+
+}

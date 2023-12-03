@@ -22,7 +22,11 @@ Route::get('/register', [UserController::class, 'getRegister'])->name('getRegist
 Route::post('/register', [UserController::class, 'postRegister'])->name('postRegister');
 
 Route::get('/', [ShopController::class, 'index'])->name('index');
-Route::get('/detail', [ShopController::class, 'detail'])->name('detail');
+
+Route::get('/detail/:{id}', [ShopController::class, 'detail'])->name('detail');
+
+Route::get('/management', [ShopController::class, 'getManagement'])->name('getManagement');
+Route::post('/management', [ShopController::class, 'postManagement'])->name('postManagement');
 
 Route::middleware('auth')->group(function () {
     Route::get('/thanks', [UserController::class, 'thanks']);

@@ -23,7 +23,7 @@
         </div>
         <div class="shop__detail--tag">#東京都</div>
         <div class="shop__detail--tag">#寿司</div>
-        <div class="shop__detail--overview">
+        <div class="shop__detail--summary">
             料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。
         </div>
     </div>

@@ -22,20 +22,22 @@
 @endsection
 
 @section('content')
-<!-- あとでDBのタグに変更すること -->
 <div class="shop__list">
+    @foreach($shops as $shop)
     <div class="shop__list--card">
         <div class="shop__list--img">
-            <img src="{{ asset('storage/sushi.jpg') }}">
+            <img src="{{ $shop->image_url }}">
         </div>
         <div class="shop__content">
-            <div class="shop__content--name">仙人</div>
-            <div class="shop__content--tag">#東京都</div>
-            <div class="shop__content--tag">#寿司</div>
+            <div class="shop__content--name">{{ $shop->shop_name }}</div>
+            <div class="shop__content--tag">#{{ $shop->area }}</div>
+            <div class="shop__content--tag">#{{ $shop->genre }}</div>
             <div class="shop__content--detail">
-                <a href="{{ route('detail') }}"><button class="button" type="submit">詳しく見る</button></a>
+                <a href="{{ route('detail', ['id' => $shop->id]) }}"><button class="button" type="submit">詳しく見る</button></a>
                 <i class="fa fa-heart-o fa-lg"></i>
             </div>
         </div>
     </div>
+    @endforeach
+</div>
 @endsection
