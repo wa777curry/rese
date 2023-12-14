@@ -7,7 +7,6 @@
 
 @section('content')
 <div class="shop__main">
-    <!-- あとでDBのタグに変更すること -->
     <!-- 店舗詳細 -->
     <div class="shop__detail">
         <div class="shop__detail--ttl">
@@ -16,35 +15,44 @@
                     <a href="#" onclick="window.history.back(); return false;">＜</a>
                 </button>
             </div>
-            <div class="shop__detail--name">仙人</div>
+            <div class="shop__detail--name">{{ $shop->shop_name }}</div>
         </div>
         <div class="shop__detail--img">
-            <img src="{{ asset('storage/sushi.jpg') }}">
+            <img src="{{ $shop->image_url }}">
         </div>
-        <div class="shop__detail--tag">#東京都</div>
-        <div class="shop__detail--tag">#寿司</div>
-        <div class="shop__detail--summary">
-            料理長厳選の食材から作る寿司を用いたコースをぜひお楽しみください。食材・味・価格、お客様の満足度を徹底的に追及したお店です。特別な日のお食事、ビジネス接待まで気軽に使用することができます。
-        </div>
+        <div class="shop__detail--tag">#{{ $shop->area }}</div>
+        <div class="shop__detail--tag">#{{ $shop->genre }}</div>
+        <div class="shop__detail--summary">{{ $shop->shop_summary }}</div>
     </div>
 
     <!-- 予約フォーム -->
     <div class="reservation__form">
-        <form action="{{ route('reservation.submit') }}" method="post">
+        <form action="{{ route('postReservation', ['id' => $shop->id]) }}" method="post">
             @csrf
             <div class="reservation__form--ttl">予約</div>
+            <input type="hidden" name="shop_id" value="{{ $shop->id }}">
+            <div class="form__error">
+                @error('reservation_date')
+                {{ $message }}
+                @enderror
+            </div>
+            <div class="form__error">
+                @error('reservation_number')
+                {{ $message }}
+                @enderror
+            </div>
             <div class="reservation__form--date">
-                <input type="date">
+                <input name='reservation_date' type="date">
             </div>
             <div class="reservation__form--time">
-                <select id="reservationTime" name="reservationTime">
+                <select id="reservationTime" name="reservation_time">
                     @foreach($times as $time)
                     <option value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="reservation__form--number">
-                <select id="reservationNumber" name="reservationNumber">
+                <select id="reservationNumber" name="reservation_number">
                     @foreach($numbers as $number)
                     <option value="{{ $number }}">
                         {{ $number === '10人以上' ? $number : $number . '人' }}
@@ -65,12 +73,7 @@
             </div>
 
             <div class="reservation__form--btn">
-                @guest
-                <a href="{{ route('postLogin') }}"><button type="button">予約する</button></a>
-                @endguest
-                @auth
-                <a href="{{ route('done') }}"><button type="button">予約する</button></a>
-                @endauth
+                <button class="button" type="submit">予約する</button>
             </div>
         </form>
     </div>

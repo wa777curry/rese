@@ -97,3 +97,10 @@
 .reservation__form--btn button {
     all: unset;
 }
+
+.form__error {
+    margin: 0 0 10px 20px;
+    text-align: left;
+    font-size: 90%;
+    color: #ffe3e3;
+}

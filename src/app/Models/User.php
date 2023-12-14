@@ -22,8 +22,10 @@ class User extends Authenticatable
     //    'two_factor_secret',
     //];
 
-    public function mypages() {
-        return $this->hasMany(Mypage::class);
+    public function shops() {
+        return $this->belongsToMany(Shop::class, 'reservations')
+        ->as('reservation')
+        ->withPivot('reservation_date', 'reservation_time', 'reservation_number');
     }
 
     public function reservations() {

@@ -49,7 +49,7 @@
                         <div class="shop__content--tag">#東京都</div>
                         <div class="shop__content--tag">#寿司</div>
                         <div class="shop__content--detail">
-                            <a href="{{ route('detail') }}"><button class="button" type="submit">詳しく見る</button></a>
+                            <a href=""><button class="button" type="submit">詳しく見る</button></a>
                             <i class="fa fa-heart-o fa-lg"></i>
                         </div>
                     </div>
@@ -63,7 +63,7 @@
                         <div class="shop__content--tag">#東京都</div>
                         <div class="shop__content--tag">#寿司</div>
                         <div class="shop__content--detail">
-                            <a href="{{ route('detail') }}"><button class="button" type="submit">詳しく見る</button></a>
+                            <a href=""><button class="button" type="submit">詳しく見る</button></a>
                             <i class="fa fa-heart-o fa-lg"></i>
                         </div>
                     </div>

@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
+use App\Http\Controllers\DetailController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,7 +24,7 @@ Route::post('/register', [UserController::class, 'postRegister'])->name('postReg
 
 Route::get('/', [ShopController::class, 'index'])->name('index');
 
-Route::get('/detail/:{id}', [ShopController::class, 'detail'])->name('detail');
+Route::get('/detail/{id}', [DetailController::class, 'detail'])->name('detail');
 
 Route::get('/management', [ShopController::class, 'getManagement'])->name('getManagement');
 Route::post('/management', [ShopController::class, 'postManagement'])->name('postManagement');
@@ -33,9 +34,9 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/logout', [UserController::class, 'logout']);
 
-    Route::post('/reservation', [ShopController::class, 'submit'])->name('reservation.submit');
+    Route::post('/detail/{id}', [DetailController::class, 'postReservation'])->name('postReservation');
 
-    Route::get('/done', [ShopController::class, 'done'])->name('done');
+    Route::get('/done', [DetailController::class, 'done'])->name('done');
 
     Route::get('/mypage', [UserController::class, 'mypage'])->name('mypage');
 });

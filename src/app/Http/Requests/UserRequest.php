@@ -40,13 +40,6 @@ class UserRequest extends FormRequest
 
     public function messages() {
         return [
-            'email.required' => '※メールアドレスを入力してください',
-            'email.string' => '※メールアドレスを文字列で入力してください',
-            'email.email' => '※有効なメールアドレス形式を入力してください',
-            'password.required' => '※パスワードを入力してください',
-            'password.string' => '※パスワードを文字列で入力してください',
-            'password.min' => '※パスワードを8文字以上で入力してください',
-
             'username.required' => '※名前を入力してください',
             'username.string' => '※名前を文字列で入力してください',
             'username.max' => '※名前を100文字以下で入力してください',
