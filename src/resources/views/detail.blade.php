@@ -53,7 +53,7 @@
                 <select id="selectTime" name="reservation_time">
                     <option value="" selected disabled>時間を選択してください</option>
                     @foreach($times as $time)
-                    <option value="{{ $time }}">{{ $time }}</option>
+                        <option value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </div>
@@ -61,9 +61,7 @@
                 <select id="selectNumber" name="reservation_number">
                     <option value="" selected disabled>人数を選択してください</option>
                     @foreach($numbers as $number)
-                    <option value="{{ $number }}">
-                        {{ $number  . '人' }}
-                    </option>
+                        <option value="{{ $number }}">{{ $number  . '人' }}</option>
                     @endforeach
                 </select>
             </div>
