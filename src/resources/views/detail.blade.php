@@ -27,7 +27,7 @@
 
     <!-- 予約フォーム -->
     <div class="reservation__form">
-        <form action="{{ route('postReservation', ['id' => $shop->id]) }}" method="post">
+        <form id="reservationForm" action="{{ route('postReservation', ['id' => $shop->id]) }}" method="post">
             @csrf
             <div class="reservation__form--ttl">予約</div>
             <input type="hidden" name="shop_id" value="{{ $shop->id }}">
@@ -37,39 +37,55 @@
                 @enderror
             </div>
             <div class="form__error">
+                @error('reservation_time')
+                {{ $message }}
+                @enderror
+            </div>
+            <div class="form__error">
                 @error('reservation_number')
                 {{ $message }}
                 @enderror
             </div>
             <div class="reservation__form--date">
-                <input name='reservation_date' type="date">
+                <input id="selectDate" name='reservation_date' type="date">
             </div>
             <div class="reservation__form--time">
-                <select id="reservationTime" name="reservation_time">
+                <select id="selectTime" name="reservation_time">
+                    <option value="" selected disabled>時間を選択してください</option>
                     @foreach($times as $time)
                     <option value="{{ $time }}">{{ $time }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="reservation__form--number">
-                <select id="reservationNumber" name="reservation_number">
+                <select id="selectNumber" name="reservation_number">
+                    <option value="" selected disabled>人数を選択してください</option>
                     @foreach($numbers as $number)
                     <option value="{{ $number }}">
-                        {{ $number === '10人以上' ? $number : $number . '人' }}
+                        {{ $number  . '人' }}
                     </option>
                     @endforeach
                 </select>
             </div>
 
-            <div class="reservation__history">
-                <div class="reservation__history--name">Shop</div>
-                <!-- ここにDBからの情報 -->
-                <div class="reservation__history--date">Date</div>
-                <!-- ここにDBからの情報 -->
-                <div class="reservation__history--time">Time</div>
-                <!-- ここにDBからの情報 -->
-                <div class="reservation__history--number">Number</div>
-                <!-- ここにDBからの情報 -->
+            <div class="reservation__confirmation">
+                <div class="reservation__confirmation--content">
+                    <span class="reservation__confirmation--ttl">Shop</span>
+                    <span>{{ $shop->shop_name }}</span>
+                </div>
+                <div class="reservation__confirmation--content">
+                    <span class="reservation__confirmation--ttl">Date</span>
+                    <span id="displayDate"></span>
+                </div>
+                <div class="reservation__confirmation--content">
+                    <span class="reservation__confirmation--ttl">Time</span>
+                    <span id="displayTime"></span>
+                </div>
+                <div class="reservation__confirmation--content">
+                    <span class="reservation__confirmation--ttl">Number</span>
+                    <span id="displayNumber"></span>
+                    <span id="displayNumberUnit"></span>
+                </div>
             </div>
 
             <div class="reservation__form--btn">

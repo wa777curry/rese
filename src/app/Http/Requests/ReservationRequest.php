@@ -42,6 +42,8 @@ class ReservationRequest extends FormRequest
         return [
             'reservation_date.required' => '※予約日を選択してください',
             'reservation_date.date' => '※有効な日付形式で入力してください',
+            'reservation_time.required' => '※予約時間を選択してください',
+            'reservation_number.required' => '※予約人数を選択してください',
             'unique' => '※指定された日時には既に予約があります',
         ];
     }

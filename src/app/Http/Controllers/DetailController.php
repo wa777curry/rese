@@ -42,42 +42,6 @@ class DetailController extends Controller
         }
     }
 
-    /*
-    public function postReservation(ReservationRequest $request) {
-        if (Auth::check()) {
-            $user = Auth::user(); // ユーザーIDの取得
-            $shopId = $request->input('shop_id'); // 店舗IDの取得
-            $reservationDate = $request->input('reservation_date');
-            $reservationTime = $request->input('reservation_time');
-            $reservationNumber = $request->input('reservation_number');
-
-            // 既存の予約情報の取得
-            $existingReservations = Reservation::where('shop_id', $shopId)
-            ->where('reservation_date', $reservationDate)
-            ->where('reservation_time', $reservationTime)
-            ->where('user_id', $user->id)
-            ->get();
-
-            // 取得した予約情報の確認
-            if ($existingReservations->count() > 0) {
-                // 既に予約がある場合の処理
-                return redirect()->back()->withInput()->withErrors(['unique' => '※指定された日時には既に予約があります']);
-            }
-
-            // 予約がない場合の処理
-            Reservation::create([
-                'user_id' => $user->id,
-                'shop_id' => $shopId,
-                'reservation_date' => $reservationDate,
-                'reservation_time' => $reservationTime,
-                'reservation_number' => $reservationNumber,
-            ]);
-            return redirect()->route('done');
-        } else {
-            return redirect()->route('auth.login');
-        }
-    }*/
-
     public function done() {
         return view('done');
     }

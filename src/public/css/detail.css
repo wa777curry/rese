@@ -58,7 +58,7 @@
 
 .reservation__form input,
 .reservation__form select {
-    width: 80%;
+    width: 90%;
     margin: 5px 20px;
     padding: 5px;
     border-radius: 5px;
@@ -70,16 +70,30 @@
 }
 
 .reservation__form select {
-    font-size: 105%;
+    font-size: 100%;
 }
 
-.reservation__history {
+.reservation__confirmation {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
     background: #50a6d5;
     border-radius: 5px;
     margin: 10px 20px;
     padding: 10px;
-    font-size: 90%;
+    font-size: 95%;
     color: #fff;
+}
+
+.reservation__confirmation--content {
+    display: flex;
+    margin-bottom: 7px;
+    align-items: center;
+}
+
+.reservation__confirmation--ttl {
+    width: 100px;
+    margin-right: 10px;
 }
 
 .reservation__form--btn {
