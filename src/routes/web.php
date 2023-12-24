@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\ManagementController;
 
 /*
 |--------------------------------------------------------------------------
@@ -26,8 +27,8 @@ Route::get('/', [ShopController::class, 'index'])->name('index');
 
 Route::get('/detail/{id}', [DetailController::class, 'detail'])->name('detail');
 
-Route::get('/management', [ShopController::class, 'getManagement'])->name('getManagement');
-Route::post('/management', [ShopController::class, 'postManagement'])->name('postManagement');
+Route::get('/management', [ManagementController::class, 'getManagement'])->name('getManagement');
+Route::post('/management', [ManagementController::class, 'postManagement'])->name('postManagement');
 
 Route::middleware('auth')->group(function () {
     Route::get('/thanks', [UserController::class, 'thanks']);

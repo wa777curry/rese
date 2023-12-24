@@ -20,8 +20,8 @@
         <div class="shop__detail--img">
             <img src="{{ $shop->image_url }}">
         </div>
-        <div class="shop__detail--tag">#{{ $shop->area }}</div>
-        <div class="shop__detail--tag">#{{ $shop->genre }}</div>
+        <div class="shop__detail--tag">#{{ $shop->area_id }}</div>
+        <div class="shop__detail--tag">#{{ $shop->genre_id }}</div>
         <div class="shop__detail--summary">{{ $shop->shop_summary }}</div>
     </div>
 

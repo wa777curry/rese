@@ -8,16 +8,25 @@
 
 @section('search')
 <div class="header__search">
-    <div class="search__form">
-        <select class="select__area">
-            <option value="">All area</option>
-        </select>
-        <select class="select__genre">
-            <option value="">All genre</option>
-        </select>
-        <div class="search__icon"><i class="fa fa-search"></i></div>
-        <input class="keyword" type="search" name="keyword" placeholder="Search...">
-    </div>
+    <form action="{{ route('index') }}" method="get">
+        @csrf
+        <div class="search__form">
+            <select class="select__area" id="a" name="a" onchange="submit(this.form)">
+                <option value="">All area</option>
+                @foreach($areas as $area)
+                <option value="{{ $area->id }}" @if($a == $area->id) selected @endif>{{ $area->area_name }}</option>
+                @endforeach
+            </select>
+            <select class="select__genre" id="g" name="g" onchange="submit(this.form)">
+                <option value="">All genre</option>
+                @foreach($genres as $genre)
+                <option value="{{ $genre->id }}" @if($g == $genre->id) selected @endif>{{ $genre->genre_name }}</option>
+                @endforeach
+            </select>
+            <div class="search__icon"><i class="fa fa-search"></i></div>
+            <input class="keyword" type="search" id="k" name="k" value="{{ $k }}" placeholder="Search...">
+        </div>
+    </form>
 </div>
 @endsection
 
@@ -30,8 +39,8 @@
         </div>
         <div class="shop__content">
             <div class="shop__content--name">{{ $shop->shop_name }}</div>
-            <div class="shop__content--tag">#{{ $shop->area }}</div>
-            <div class="shop__content--tag">#{{ $shop->genre }}</div>
+            <div class="shop__content--tag">#{{ $shop->area_name }}</div>
+            <div class="shop__content--tag">#{{ $shop->genre_name }}</div>
             <div class="shop__content--detail">
                 <a href="{{ route('detail', ['id' => $shop->id]) }}"><button class="button" type="submit">詳しく見る</button></a>
                 <i class="fa fa-heart-o fa-lg"></i>

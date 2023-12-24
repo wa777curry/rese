@@ -21,6 +21,7 @@
 .search__form select {
     border-right: 1px solid #ddd;
     padding-right: 15px;
+    width: 120px;
 }
 
 .search__form .keyword {

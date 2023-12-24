@@ -37,9 +37,9 @@
 </div>
 <div class="form__error">
     @if ($errors->has('postLogin'))
-    <div class="form__alert">
-        {{ $errors->first('postLogin')}}
-    </div>
+        <div class="form__alert">
+            {{ $errors->first('postLogin')}}
+        </div>
     @endif
 </div>
     @endsection
