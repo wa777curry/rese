@@ -21,16 +21,13 @@
 .mypage__shop {
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 30px;
     justify-content: flex-start;
     margin-top: -10px;
 }
 
 .mypage__shop .shop__list--card {
-    /* ショップのカードが均等に広がるように */
-    flex: 1;
-    /* ショップのカードの最大幅 */
-    max-width: 300px;
+    width: 280px;
     margin: 10px 0;
 }
 
@@ -46,6 +43,7 @@
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     color: #fff;
     font-size: 90%;
+    margin-bottom: 20px;
     padding: 20px;
 }
 
@@ -61,39 +59,9 @@
 }
 
 .mypage__history--text {
-    padding: 5px 0;
+    padding: 5px 5px;
 }
 
 .mypage__form--close {
     margin-left: auto;
-}
-
-.round_btn {
-    display: block;
-    position: relative;
-    width: 23px;
-    height: 23px;
-    cursor: pointer;
-    background: #2988bc;
-    border: 3px solid #fff;
-    border-radius: 50%;
-}
-
-.round_btn::before,
-.round_btn::after {
-    content: "";
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 2px;
-    height: 20px;
-    background: #fff;
-}
-
-.round_btn::before {
-    transform: translate(-50%, -50%) rotate(45deg);
-}
-
-.round_btn::after {
-    transform: translate(-50%, -50%) rotate(-45deg);
 }

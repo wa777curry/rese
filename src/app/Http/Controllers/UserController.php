@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\UserRequest;
-use App\Models\Shop;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
@@ -41,13 +40,6 @@ class UserController extends Controller
 
     public function thanks() {
         return view('thanks');
-    }
-
-    // マイページ関連
-    public function mypage() {
-        $shops = Shop::all();
-
-        return view('mypage', compact('shops'));
     }
 
     // ログアウト関連
