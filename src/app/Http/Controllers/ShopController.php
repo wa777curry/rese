@@ -67,7 +67,9 @@ class ShopController extends Controller
         });
 
         // お気に入り店舗の表示
-        $favoriteShops = Favorite::where('user_id', $userId)->with('shop')->get();
+        $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
+            ->orderBy('shop_id') // 店舗ID順
+            ->get();
 
         return view('mypage', compact('reservations', 'favoriteShops', 'areas', 'genres'));
     }
@@ -77,7 +79,7 @@ class ShopController extends Controller
         $query->join('areas', 'shops.area_id', '=', 'areas.id');
         $query->join('genres', 'shops.genre_id', '=', 'genres.id');
         $query->select('shops.*', 'areas.area_name', 'genres.genre_name',);
-        $query->orderBy('shops.id', 'asc');
+        $query->orderBy('shops.id');
 
         return $query;
     }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\DateTimeNotInPast;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rule;
@@ -26,9 +27,8 @@ class ReservationRequest extends FormRequest
     public function rules() {
         return [
             'reservation_date' => ['required', 'date'],
-            'reservation_time' => ['required'],
-            'reservation_number' => [
-                'required',
+            'reservation_time' => ['required', new DateTimeNotInPast],
+            'reservation_number' => ['required',
                 Rule::unique('reservations')
                     ->where('user_id', Auth::id())
                     ->where('shop_id', $this->input('shop_id'))
