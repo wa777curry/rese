@@ -6,63 +6,27 @@
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 <script src="{{ asset('js/app.js') }}"></script>
+<script defer src="{{ asset('js/app-defer.js') }}"></script>
 @endsection
 
 @section('content')
+<div class="mypage__greeting--ttl">
+    <button class="back__button" style="cursor: default">＞</button>
+    <div class="greeting__name">{{ Auth::user()->username }}さんのマイページ</div>
+</div>
 <div class="mypage__main">
-    <div class="mypage__content">
-        <!-- 予約状況の表示 -->
-        <div class="mypage__status">
-            <div class="greeting__name">　</div>
-            <div class="mypage__main--ttl">予約状況</div>
-            @if(!$reservations->isEmpty())
-            @foreach($reservations as $reservation)
-            <div class="mypage__form">
-                <div class="mypage__form--ttl">
-                    <div class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i></div>
-                    <span>予約{{ $reservation->number }}</span>
-                    <div class="mypage__form--close"><i class="fa fa-times-circle-o fa-2x"></i></div>
-                </div>
-                <div class="mypage__history">
-                    <div class="reservation__confirmation--content">
-                        <span class="reservation__confirmation--ttl">Shop</span>
-                        <span>{{ $reservation->shop->shop_name }}</span>
-                    </div>
-                    <div class="reservation__confirmation--content">
-                        <span class="reservation__confirmation--ttl">Date</span>
-                        <span>{{ $reservation->reservation_date }}</span>
-                    </div>
-                    <div class="reservation__confirmation--content">
-                        <span class="reservation__confirmation--ttl">Time</span>
-                        <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
-                    </div>
-                    <div class="reservation__confirmation--content">
-                        <span class="reservation__confirmation--ttl">Number</span>
-                        <span>{{ $reservation->reservation_number }}人</span>
-                    </div>
-                </div>
-            </div>
-            @endforeach
-            @else
-            <div class="mypage__form">
-                <div class="mypage__form--ttl">
-                    <div class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i></div>予約
-                    <div class="mypage__form--close"><i class="fa fa-times-circle-o fa-2x"></i></div>
-                </div>
-                <div class="reservation__confirmation--content">
-                    <div class="mypage__history--text">
-                        予約はありません
-                    </div>
-                </div>
-            </div>
-            @endif
+    <div class="mypage__menu">
+        <div class="mypage__menu--ttl">
+            <div class="mypage__menu--item" id="menu-favorite">お気に入り店舗</div>
+            <div class="mypage__menu--item" id="menu-reservation">予約状況</div>
+            <div class="mypage__menu--item" id="menu-history">予約履歴</div>
         </div>
+    </div>
 
-        <!-- お気に入り店舗 -->
-        <div class="mypage__favorite">
-            <div class="greeting__name">{{ Auth::user()->username }}さん</div>
-
-            <div class="mypage__main--ttl">お気に入り店舗</div>
+    <div class="mypage__content">
+        <!-- お気に入り店舗の中身 -->
+        <div id="favorite-section" class="mypage__content--section">
+            <div class="mypage__content--item">お気に入り店舗</div>
             <div class="mypage__shop">
                 @foreach($favoriteShops as $shop)
                 <div class="shop__list--card">
@@ -95,6 +59,91 @@
                 </div>
                 @endforeach
             </div>
+        </div>
+
+        <!-- 予約状況の中身 -->
+        <div id="reservation-section" class="mypage__content--section">
+            <div class="mypage__content--item">予約状況</div>
+            @if(!$reservations->isEmpty())
+            @foreach($reservations as $reservation)
+            <div class="mypage__form">
+                <div class="mypage__form--ttl">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　予約{{ $reservation->number }}</span>
+                </div>
+                <div class="mypage__history accordion-content">
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Shop</span>
+                        <span>{{ $reservation->shop->shop_name }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Date</span>
+                        <span>{{ $reservation->reservation_date }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Time</span>
+                        <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Number</span>
+                        <span>{{ $reservation->reservation_number }}人</span>
+                    </div>
+                    <div class="mypage__form--bottom">
+                        <span class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i> 変更</span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-times-circle fa-2x"></i> 削除</span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i> ＱＲ</span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="mypage__form">
+                <div class="mypage__form--ttl">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　現在予約はありません</span>
+                </div>
+            </div>
+            @endif
+        </div>
+
+        <!-- 予約履歴の中身 -->
+        <div id="history-section" class="mypage__content--section">
+            <div class="mypage__content--item">予約履歴</div>
+            @if(!$pastReservations->isEmpty())
+            @foreach($pastReservations as $reservation)
+            <div class="mypage__form">
+                <div class="mypage__form--ttl">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x fa-flip-horizontal"></i>　履歴{{ $reservation->number }}</span>
+                </div>
+                <div class="mypage__history accordion-content">
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Shop</span>
+                        <span>{{ $reservation->shop->shop_name }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Date</span>
+                        <span>{{ $reservation->reservation_date }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Time</span>
+                        <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Number</span>
+                        <span>{{ $reservation->reservation_number }}人</span>
+                    </div>
+                    <div class="mypage__form--bottom">
+                        <span class="mypage__form--edit-icon"><i class="fa fa-star fa-2x"></i></span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-commenting fa-2x"></i></span>
+                    </div>
+                </div>
+            </div>
+            @endforeach
+            @else
+            <div class="mypage__form">
+                <div class="mypage__form--ttl">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　過去の予約はありません</span>
+                </div>
+            </div>
+            @endif
         </div>
     </div>
 </div>

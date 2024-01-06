@@ -26,7 +26,14 @@ class ReservationController extends Controller
         }
     }
 
+    // 予約完了
     public function done() {
         return view('done');
+    }
+
+    // 予約削除
+    public function deleteReservation($id) {
+        Reservation::destroy($id);
+        return redirect()->route('mypage')->with('success', '予約を削除しました');
     }
 }

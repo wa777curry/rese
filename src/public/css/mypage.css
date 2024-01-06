@@ -1,67 +1,100 @@
+.mypage__greeting--ttl {
+    display: flex;
+    margin: 40px 0 10px 0;
+}
+
 .greeting__name {
-    font-size: 120%;
+    margin-left: 15px;
     font-weight: bold;
-    margin-bottom: 20px;
+    font-size: 130%;
+}
+
+.mypage__main {
+    display: flex;
+    width: 100%;
+}
+
+.mypage__menu {
+    width: 25%;
+    margin-top: 10px;
+}
+
+.mypage__menu--ttl,
+.mypage__content--section {
+    margin: 20px 30px;
+}
+
+.mypage__menu--item,
+.mypage__content--item {
+    margin-bottom: 15px;
+    padding: 5px 20px;
+    font-weight: bold;
+    font-size: 110%;
+}
+
+.mypage__menu--item:hover {
+    color: #2988bc;
+    cursor: pointer;
+}
+
+.mypage__menu--item.active {
+    color: #fff;
+    background-color: #2988bc;
+    border: none;
+    border-radius: 5px;
 }
 
 .mypage__content {
-    display: flex;
-    justify-content: space-between;
+    width: 75%;
+    margin-top: 10px;
 }
 
-.mypage__status {
-    flex: 1;
-}
-
-.mypage__favorite {
-    flex: 2;
-    margin: 0 30px;
+.mypage__content--section {
+    display: none;
 }
 
 .mypage__shop {
     display: flex;
     flex-wrap: wrap;
-    gap: 30px;
+    gap: 20px;
     justify-content: flex-start;
-    margin-top: -10px;
 }
 
 .mypage__shop .shop__list--card {
-    width: 280px;
-    margin: 10px 0;
+    width: 250px;
+    margin: 0;
 }
 
-.mypage__main--ttl {
-    font-size: 110%;
-    font-weight: bold;
-    margin-bottom: 20px;
-}
+
 
 .mypage__form {
+    width: 50%;
     background: #2988bc;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     color: #fff;
     font-size: 90%;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     padding: 20px;
 }
 
 .mypage__form--ttl {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin: 5px 0 15px 0;
 }
 
-.mypage__form--icon {
-    margin-right: 15px;
+.mypage__history {
+    margin-top: 15px;
 }
 
 .mypage__history--text {
     padding: 5px 5px;
 }
 
-.mypage__form--close {
-    margin-left: auto;
+.mypage__form--bottom {
+    margin-top: 10px;
+    text-align: right;
+}
+
+.mypage__form--edit-icon {
+    padding-left: 15px;
 }

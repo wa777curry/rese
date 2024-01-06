@@ -39,8 +39,24 @@ function updateDisplay() {
     }
 }
 
-// mypages.blade.php 予約状況のウインドウを非表示にする処理
-function closeReservationForm() {
-    var reservationForm = document.querySelector('.mypage__form');
-    reservationForm.style.display = 'none';
-}
+// mypage.blade.php 画面制御
+document.addEventListener('DOMContentLoaded', function() {
+    function showContent(sectionId) {
+        document.querySelectorAll('.mypage__content--section').forEach(function(section) {
+            section.style.display = 'none';
+        });
+        document.getElementById(sectionId).style.display = 'block';
+    }
+
+    document.getElementById('menu-favorite').addEventListener('click', function() {
+        showContent('favorite-section');
+    });
+
+    document.getElementById('menu-reservation').addEventListener('click', function() {
+        showContent('reservation-section');
+    });
+
+    document.getElementById('menu-history').addEventListener('click', function() {
+        showContent('history-section');
+    });
+})

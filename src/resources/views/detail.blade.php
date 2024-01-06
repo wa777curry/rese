@@ -10,11 +10,9 @@
     <!-- 店舗詳細 -->
     <div class="shop__detail">
         <div class="shop__detail--ttl">
-            <div>
-                <button class="back__button">
-                    <a href="#" onclick="window.history.back(); return false;">＜</a>
-                </button>
-            </div>
+            <button class="back__button">
+                <a href="#" onclick="window.history.back(); return false;">＜</a>
+            </button>
             <div class="shop__detail--name">{{ $shop->shop_name }}</div>
         </div>
         <div class="shop__detail--img">

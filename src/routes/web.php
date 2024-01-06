@@ -37,8 +37,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
 
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
-
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
+
+    Route::delete('/mypage', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
 
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');
 

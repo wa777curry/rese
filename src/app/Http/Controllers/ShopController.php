@@ -55,7 +55,14 @@ class ShopController extends Controller
         // 予約状況の表示
         $userId = Auth::id(); // ログインIDの取得
         $reservations = Reservation::where('user_id', $userId)
-            ->where('reservation_date', '>=', now()->toDateString()) // 未来の予約のみを取得
+             // 現日時より未来の情報を表示
+            ->where(function ($query) {
+                $query->where('reservation_date', '>', now()->toDateString())
+                ->orWhere(function ($query) {
+                    $query->where('reservation_date', '=', now()->toDateString())
+                    ->where('reservation_time', '>', now()->format('H:i'));
+                });
+            })
             ->orderBy('reservation_date') // 日付昇順
             ->orderBy('reservation_time') // 時間昇順
             ->get();
@@ -66,12 +73,33 @@ class ShopController extends Controller
             return $reservation;
         });
 
+        // 予約履歴の表示
+        $userId = Auth::id(); // ログインIDの取得
+        $pastReservations = Reservation::where('user_id', $userId)
+            // 現日時より未来の情報を表示
+            ->where(function ($query) {
+                $query->where('reservation_date', '<', now()->toDateString())
+                    ->orWhere(function ($query) {
+                        $query->where('reservation_date', '=', now()->toDateString())
+                            ->where('reservation_time', '<', now()->format('H:i'));
+                    });
+            })
+            ->orderBy('reservation_date', 'desc') // 日付昇順
+            ->orderBy('reservation_time') // 時間昇順
+            ->get();
+
+        // 履歴番号の振り直し
+        $pastReservations = $pastReservations->map(function ($reservation, $index) {
+            $reservation->number = $index + 1;
+            return $reservation;
+        });
+
         // お気に入り店舗の表示
         $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
             ->orderBy('shop_id') // 店舗ID順
             ->get();
 
-        return view('mypage', compact('reservations', 'favoriteShops', 'areas', 'genres'));
+        return view('mypage', compact('reservations', 'pastReservations', 'favoriteShops', 'areas', 'genres'));
     }
 
     private function shopData() {
