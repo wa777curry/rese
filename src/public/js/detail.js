@@ -38,25 +38,3 @@ function updateDisplay() {
         displayNumberUnit.innerHTML = '';
     }
 }
-
-// mypage.blade.php 画面制御
-document.addEventListener('DOMContentLoaded', function() {
-    function showContent(sectionId) {
-        document.querySelectorAll('.mypage__content--section').forEach(function(section) {
-            section.style.display = 'none';
-        });
-        document.getElementById(sectionId).style.display = 'block';
-    }
-
-    document.getElementById('menu-favorite').addEventListener('click', function() {
-        showContent('favorite-section');
-    });
-
-    document.getElementById('menu-reservation').addEventListener('click', function() {
-        showContent('reservation-section');
-    });
-
-    document.getElementById('menu-history').addEventListener('click', function() {
-        showContent('history-section');
-    });
-})

@@ -2,7 +2,6 @@
 
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
-<script src="{{ asset('js/app.js') }}"></script>
 @endsection
 
 @section('content')
@@ -91,3 +90,7 @@
     </div>
 </div>
 @endsection
+
+@push('scripts')
+<script src="{{ asset('js/detail.js') }}"></script>
+@endpush

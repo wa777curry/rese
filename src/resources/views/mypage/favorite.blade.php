@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div id="favorite-section" class="mypage__content--section">
     <div class="mypage__content--item">お気に入り店舗</div>
     <div class="mypage__shop">
@@ -36,4 +33,3 @@
         @endforeach
     </div>
 </div>
-@endsection

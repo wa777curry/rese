@@ -5,7 +5,7 @@
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-<script src="{{ asset('js/app.js') }}"></script>
+<script src="{{ asset('js/detail.js') }}"></script>
 @endsection
 
 @section('content')
@@ -17,37 +17,37 @@
             <!-- 予約状況の中身 -->
             <div class="mypage__main--ttl">予約状況</div>
             @if(!$reservations->isEmpty())
-                @foreach($reservations as $reservation)
-                <div class="mypage__form">
-                    <div class="mypage__form--ttl" onclick="toggleAccordion(this)">
-                        <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　予約{{ $reservation->number }}</span>
-                        <span class="mypage__form--icon"><i class="fa fa-chevron-circle-down fa-2x"></i></span>
+            @foreach($reservations as $reservation)
+            <div class="mypage__form">
+                <div class="mypage__form--ttl" onclick="toggleAccordion(this)">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　予約{{ $reservation->number }}</span>
+                    <span class="mypage__form--icon"><i class="fa fa-chevron-circle-down fa-2x"></i></span>
+                </div>
+                <div class="mypage__history accordion-content">
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Shop</span>
+                        <span>{{ $reservation->shop->shop_name }}</span>
                     </div>
-                    <div class="mypage__history accordion-content">
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Shop</span>
-                            <span>{{ $reservation->shop->shop_name }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Date</span>
-                            <span>{{ $reservation->reservation_date }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Time</span>
-                            <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Number</span>
-                            <span>{{ $reservation->reservation_number }}人</span>
-                        </div>
-                        <div class="mypage__form--bottom">
-                            <span class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i></span>
-                            <span class="mypage__form--edit-icon"><i class="fa fa-times-circle fa-2x"></i></span>
-                            <span class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i></span>
-                        </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Date</span>
+                        <span>{{ $reservation->reservation_date }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Time</span>
+                        <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Number</span>
+                        <span>{{ $reservation->reservation_number }}人</span>
+                    </div>
+                    <div class="mypage__form--bottom">
+                        <span class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i></span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-times-circle fa-2x"></i></span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i></span>
                     </div>
                 </div>
-                @endforeach
+            </div>
+            @endforeach
             @else
             <div class="mypage__form">
                 <div class="mypage__form--ttl">
@@ -59,41 +59,41 @@
             <!-- 過去の予約状況の中身 -->
             <div class="mypage__form--p-ttl">予約履歴</div>
             @if(!$pastReservations->isEmpty())
-                @foreach($pastReservations->take(3) as $reservation)
-                <div class="mypage__p-form">
-                    <div class="mypage__form--ttl" onclick="toggleAccordion(this)">
-                        <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x fa-flip-horizontal"></i>　履歴{{ $reservation->number }}</span>
-                        <span class="mypage__form--icon"><i class="fa fa-chevron-circle-down fa-2x"></i></span>
+            @foreach($pastReservations->take(3) as $reservation)
+            <div class="mypage__p-form">
+                <div class="mypage__form--ttl" onclick="toggleAccordion(this)">
+                    <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x fa-flip-horizontal"></i>　履歴{{ $reservation->number }}</span>
+                    <span class="mypage__form--icon"><i class="fa fa-chevron-circle-down fa-2x"></i></span>
+                </div>
+                <div class="mypage__history accordion-content">
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Shop</span>
+                        <span>{{ $reservation->shop->shop_name }}</span>
                     </div>
-                    <div class="mypage__history accordion-content">
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Shop</span>
-                            <span>{{ $reservation->shop->shop_name }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Date</span>
-                            <span>{{ $reservation->reservation_date }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Time</span>
-                            <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
-                        </div>
-                        <div class="reservation__confirmation--content">
-                            <span class="reservation__confirmation--ttl">Number</span>
-                            <span>{{ $reservation->reservation_number }}人</span>
-                        </div>
-                        <div class="mypage__form--bottom">
-                            <span class="mypage__form--edit-icon"><i class="fa fa-star fa-2x"></i></span>
-                            <span class="mypage__form--edit-icon"><i class="fa fa-commenting fa-2x"></i></span>
-                        </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Date</span>
+                        <span>{{ $reservation->reservation_date }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Time</span>
+                        <span>{{ substr($reservation->reservation_time, 0, 5) }}</span>
+                    </div>
+                    <div class="reservation__confirmation--content">
+                        <span class="reservation__confirmation--ttl">Number</span>
+                        <span>{{ $reservation->reservation_number }}人</span>
+                    </div>
+                    <div class="mypage__form--bottom">
+                        <span class="mypage__form--edit-icon"><i class="fa fa-star fa-2x"></i></span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-commenting fa-2x"></i></span>
                     </div>
                 </div>
-                @endforeach
-                <button id="loadMoreButton" onclick="loadMoreItems()">もっと見る</button>
-                <!-- 残りのアイテムを非表示で追加 -->
-                @foreach($pastReservations->slice(3) as $reservation)
-                    <div class="item hidden">{{ $reservation->name }}</div>
-                @endforeach
+            </div>
+            @endforeach
+            <button id="loadMoreButton" onclick="loadMoreItems()">もっと見る</button>
+            <!-- 残りのアイテムを非表示で追加 -->
+            @foreach($pastReservations->slice(3) as $reservation)
+            <div class="item hidden">{{ $reservation->name }}</div>
+            @endforeach
             @else
             <div class="mypage__form">
                 <div class="mypage__form--ttl">

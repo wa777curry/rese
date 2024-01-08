@@ -1,6 +1,3 @@
-@extends('layouts.app')
-
-@section('content')
 <div id="reservation-section" class="mypage__content--section">
     <div class="mypage__content--item">予約状況</div>
     @if(!$reservations->isEmpty())
@@ -42,4 +39,3 @@
     </div>
     @endif
 </div>
-@endsection

@@ -3,12 +3,14 @@
     "endauth",
     "enderror",
     "endguest",
+    "endpush",
     "endsearch",
     "endsection",
     "iframes",
     "mypage",
     "mypages",
     "nofavorite",
+    "qrcode",
     "Rese",
     "tabindex"
   ]

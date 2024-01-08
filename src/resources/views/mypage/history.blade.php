@@ -1,10 +1,7 @@
-@extends('layouts.app')
-
-@section('content')
 <div id="history-section" class="mypage__content--section">
     <div class="mypage__content--item">予約履歴</div>
-    @if(!$history->isEmpty())
-    @foreach($history as $reservation)
+    @if(!$pastReservations->isEmpty())
+    @foreach($pastReservations as $reservation)
     <div class="mypage__form">
         <div class="mypage__form--ttl">
             <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x fa-flip-horizontal"></i>　履歴{{ $reservation->number }}</span>
@@ -41,4 +38,3 @@
     </div>
     @endif
 </div>
-@endsection
