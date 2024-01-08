@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class ReservationController extends Controller
 {
@@ -31,9 +32,23 @@ class ReservationController extends Controller
         return view('done');
     }
 
+    // 予約変更
+    public function editReservation($id) {
+        // 編集ページを表示するためのロジックを追加
+        return view('reservation.edit', ['reservationId' => $id]);
+    }
+
     // 予約削除
     public function deleteReservation($id) {
-        Reservation::destroy($id);
-        return redirect()->route('mypage')->with('success', '予約を削除しました');
+        $reservation = Reservation::findOrFail($id);
+        $reservation->delete();
+        return redirect()->route('mypage');
+    }
+
+    // QRコードの表示
+    public function qrReservation($id) {
+        // QRコード生成ロジックを追加
+        // 生成されたQRコード画像を表示するビューを返す
+        // または、直接画像を返すことも可能
     }
 }

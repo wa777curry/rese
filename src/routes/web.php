@@ -39,7 +39,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
-    Route::delete('/mypage', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
+    Route::get('/reservation/edit/{id}', [ReservationController::class, 'editReservation'])->name('editReservation');
+    Route::get('/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
+    Route::get('/reservation/qr/{id}', [ReservationController::class, 'qrReservation'])->name('qrReservation');
 
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');
 

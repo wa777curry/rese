@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', function() {
         document.getElementById('menu-' + menu).classList.add('active');
     }
 
-    // 初期表示をfavorite-sectionに設定
+    // 初期表示をお気に入り店舗（favorite-section）に設定
     showContent('favorite-section');
     setActiveMenu('favorite');
 

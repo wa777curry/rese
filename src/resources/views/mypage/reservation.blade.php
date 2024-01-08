@@ -24,9 +24,13 @@
                 <span>{{ $reservation->reservation_number }}人</span>
             </div>
             <div class="mypage__form--bottom">
-                <span class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i> 変更</span>
-                <span class="mypage__form--edit-icon"><i class="fa fa-times-circle fa-2x"></i> 削除</span>
-                <span class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i> ＱＲ</span>
+                <a href="{{ route('editReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i> 変更</a>
+
+                <a href="{{ route('deleteReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon" onclick="return confirm('この予約を削除してよろしいですか？')">
+                    <i class="fa fa-times-circle fa-2x"></i> 削除
+                </a>
+
+                <a href="{{ route('qrReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i> ＱＲ</a>
             </div>
         </div>
     </div>
