@@ -55,13 +55,13 @@ class ShopController extends Controller
         // 予約状況の表示
         $userId = Auth::id(); // ログインIDの取得
         $reservations = Reservation::where('user_id', $userId)
-             // 現日時より未来の情報を表示
+            // 現日時より未来の情報を表示
             ->where(function ($query) {
                 $query->where('reservation_date', '>', now()->toDateString())
-                ->orWhere(function ($query) {
-                    $query->where('reservation_date', '=', now()->toDateString())
-                    ->where('reservation_time', '>', now()->format('H:i'));
-                });
+                    ->orWhere(function ($query) {
+                        $query->where('reservation_date', '=', now()->toDateString())
+                            ->where('reservation_time', '>', now()->format('H:i'));
+                    });
             })
             ->orderBy('reservation_date') // 日付昇順
             ->orderBy('reservation_time') // 時間昇順
@@ -75,7 +75,7 @@ class ShopController extends Controller
 
         // 予約履歴の表示
         $userId = Auth::id(); // ログインIDの取得
-        $pastReservations = Reservation::where('user_id', $userId)
+        $history = Reservation::where('user_id', $userId)
             // 現日時より未来の情報を表示
             ->where(function ($query) {
                 $query->where('reservation_date', '<', now()->toDateString())
@@ -89,17 +89,18 @@ class ShopController extends Controller
             ->get();
 
         // 履歴番号の振り直し
-        $pastReservations = $pastReservations->map(function ($reservation, $index) {
+        $history = $history->map(function ($reservation, $index) {
             $reservation->number = $index + 1;
             return $reservation;
         });
 
         // お気に入り店舗の表示
+        $userId = Auth::id(); // ログインIDの取得
         $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
             ->orderBy('shop_id') // 店舗ID順
             ->get();
 
-        return view('mypage', compact('reservations', 'pastReservations', 'favoriteShops', 'areas', 'genres'));
+        return view('mypage', compact('reservations', 'history', 'favoriteShops', 'areas', 'genres'));
     }
 
     private function shopData() {
@@ -131,5 +132,17 @@ class ShopController extends Controller
         }
         $numbers = array_merge(range(1, 10)); // 1〜10人まで選択
         return [$times, $numbers];
+    }
+
+    public function getFavorite() {
+        return view('mypage.favorite');
+    }
+
+    public function getReservation() {
+        return view('mypage.reservation');
+    }
+
+    public function getHistory() {
+        return view('mypage.history');
     }
 }

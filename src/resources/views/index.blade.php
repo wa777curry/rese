@@ -44,19 +44,19 @@
             <div class="shop__content--detail">
                 <a href="{{ route('detail', ['id' => $shop->id]) }}"><button class="button" type="submit">詳しく見る</button></a>
                 @auth
-                    @if(auth()->user()->favorites->contains($shop->id))
-                        <!-- お気に入り登録済みの場合 -->
-                        <form action="{{ route('nofavorite', ['shop' => $shop->id]) }}" method="get">
-                            @csrf
-                            <button class="f-button" type="submit"><i class="fa fa-heart fa-lg fa-2x on-color"></i></button>
-                        </form>
-                    @else
-                        <!-- お気に入り未登録の場合 -->
-                        <form action="{{ route('favorite', ['shop' => $shop->id]) }}" method="get">
-                            @csrf
-                            <button class="f-button" type="submit"><i class="fa fa-heart fa-lg fa-2x off-color"></i></button>
-                        </form>
-                    @endif
+                @if(auth()->user()->favorites->contains($shop->id))
+                <!-- お気に入り登録済みの場合 -->
+                <form action="{{ route('nofavorite', ['shop' => $shop->id]) }}" method="get">
+                    @csrf
+                    <button class="f-button" type="submit"><i class="fa fa-heart fa-lg fa-2x on-color"></i></button>
+                </form>
+                @else
+                <!-- お気に入り未登録の場合 -->
+                <form action="{{ route('favorite', ['shop' => $shop->id]) }}" method="get">
+                    @csrf
+                    <button class="f-button" type="submit"><i class="fa fa-heart fa-lg fa-2x off-color"></i></button>
+                </form>
+                @endif
                 @endauth
             </div>
         </div>
