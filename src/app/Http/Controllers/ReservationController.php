@@ -42,7 +42,7 @@ class ReservationController extends Controller
     public function deleteReservation($id) {
         $reservation = Reservation::findOrFail($id);
         $reservation->delete();
-        return redirect()->route('mypage');
+        return redirect()->route('getReservation');
     }
 
     // QRコードの表示

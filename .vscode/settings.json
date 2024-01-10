@@ -3,6 +3,7 @@
     "endauth",
     "enderror",
     "endguest",
+    "endphp",
     "endpush",
     "endsearch",
     "endsection",

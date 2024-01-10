@@ -49,10 +49,6 @@
     margin-top: 10px;
 }
 
-.mypage__content--section {
-    display: none;
-}
-
 .mypage__shop {
     display: flex;
     flex-wrap: wrap;

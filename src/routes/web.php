@@ -44,6 +44,9 @@ Route::middleware('auth')->group(function () {
     Route::get('/reservation/qr/{id}', [ReservationController::class, 'qrReservation'])->name('qrReservation');
 
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');
+    Route::get('/mypage/favorite', [ShopController::class, 'getFavorite'])->name('getFavorite');
+    Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
+    Route::get('/mypage/history', [ShopController::class, 'getHistory'])->name('getHistory');
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');

@@ -45,23 +45,41 @@ class ShopController extends Controller
         return view('index', compact('shops', 'areas', 'genres', 'k', 'a', 'g'));
     }
 
-    // マイページの表示
-    public function getMypage() {
+    private function getMypageData() {
         $areas = Area::all();
         $genres = Genre::all();
-
         $query = $this->shopData();
+        return compact('areas', 'genres', 'query');
+    }
 
-        // 予約状況の表示
+    // マイページの表示
+    public function getMypage() {
+        $data = $this->getMypageData();
+        return view('mypage', $data);
+    }
+
+    // お気に入り店舗の表示
+    public function getFavorite() {
+        $data = $this->getMypageData();
+        $userId = Auth::id(); // ログインIDの取得
+        $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
+            ->orderBy('shop_id') // 店舗ID順
+            ->get();
+        return view('mypage.favorite', compact('favoriteShops', 'data'));
+    }
+
+    // 予約状況の表示
+    public function getReservation() {
+        $data = $this->getMypageData();
         $userId = Auth::id(); // ログインIDの取得
         $reservations = Reservation::where('user_id', $userId)
-             // 現日時より未来の情報を表示
+            // 現日時より未来の情報を表示
             ->where(function ($query) {
                 $query->where('reservation_date', '>', now()->toDateString())
-                ->orWhere(function ($query) {
-                    $query->where('reservation_date', '=', now()->toDateString())
-                    ->where('reservation_time', '>', now()->format('H:i'));
-                });
+                    ->orWhere(function ($query) {
+                        $query->where('reservation_date', '=', now()->toDateString())
+                            ->where('reservation_time', '>', now()->format('H:i'));
+                    });
             })
             ->orderBy('reservation_date') // 日付昇順
             ->orderBy('reservation_time') // 時間昇順
@@ -73,7 +91,12 @@ class ShopController extends Controller
             return $reservation;
         });
 
-        // 予約履歴の表示
+        return view('mypage.reservation', compact('reservations', $data));
+    }
+
+    // 予約履歴の表示
+    public function getHistory() {
+        $data = $this->getMypageData();
         $userId = Auth::id(); // ログインIDの取得
         $pastReservations = Reservation::where('user_id', $userId)
             // 現日時より未来の情報を表示
@@ -94,12 +117,7 @@ class ShopController extends Controller
             return $reservation;
         });
 
-        // お気に入り店舗の表示
-        $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
-            ->orderBy('shop_id') // 店舗ID順
-            ->get();
-
-        return view('mypage', compact('reservations', 'pastReservations', 'favoriteShops', 'areas', 'genres'));
+        return view('mypage.history', compact('pastReservations', $data));
     }
 
     private function shopData() {
