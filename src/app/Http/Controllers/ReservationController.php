@@ -6,6 +6,7 @@ use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class ReservationController extends Controller
 {
@@ -47,8 +48,8 @@ class ReservationController extends Controller
 
     // QRコードの表示
     public function qrReservation($id) {
-        // QRコード生成ロジックを追加
-        // 生成されたQRコード画像を表示するビューを返す
-        // または、直接画像を返すことも可能
+        $reservation = Reservation::findOrFail($id);
+        $qrCode = QrCode::size(300)->generate(route('reservation.show', ['id' => $reservation->id]));
+        return response($qrCode)->header('Content-Type', 'image/png');
     }
 }

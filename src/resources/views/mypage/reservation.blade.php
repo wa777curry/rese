@@ -15,7 +15,7 @@
     <div class="mypage__menu">
         <div class="mypage__menu--ttl">
             <div class="mypage__menu--item"><a href="{{ route('getFavorite') }}">お気に入り店舗</a></div>
-            <div class="mypage__menu--item"><a href="{{ route('getReservation') }}">予約状況</a></div>
+            <div class="mypage__menu--item active"><a href="{{ route('getReservation') }}">予約状況</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getHistory') }}">予約履歴</a></div>
         </div>
     </div>
@@ -47,13 +47,15 @@
                         <span>{{ $reservation->reservation_number }}人</span>
                     </div>
                     <div class="mypage__form--bottom">
-                        <a href="{{ route('editReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i> 変更</a>
+                        <a href="{{ route('editReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon"><i class="fa fa-edit fa-2x"></i> 予約の変更</a>
 
                         <a href="{{ route('deleteReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon" onclick="return confirm('この予約を削除してよろしいですか？')">
-                            <i class="fa fa-times-circle fa-2x"></i> 削除
+                            <i class="fa fa-times-circle fa-2x"></i> 予約の削除
                         </a>
 
-                        <a href="{{ route('qrReservation', ['id' => $reservation->id]) }}" class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i> ＱＲ</a>
+                        <a wire:click="openModal({{ $reservation->id }})" class="mypage__form--edit-icon"><i class="fa fa-qrcode fa-2x"></i> ＱＲコードの表示</a>
+                        @livewire('q-r-code-modal', ['reservation' => $reservation], key('q-r-code-modal' . $reservation->id))
+                        @livewireScripts
                     </div>
                 </div>
             </div>

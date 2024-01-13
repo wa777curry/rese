@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     @yield('css')
+    @livewireStyles
 </head>
 
 <body>
@@ -52,6 +53,7 @@
         @yield('content')
         @stack('scripts')
     </main>
+    @livewireScripts
 </body>
 
 </html>

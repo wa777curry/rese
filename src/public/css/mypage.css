@@ -32,6 +32,10 @@
     font-size: 110%;
 }
 
+.mypage__menu--item {
+    transition: color 0.3s ease;
+}
+
 .mypage__menu--item:hover {
     color: #2988bc;
     cursor: pointer;

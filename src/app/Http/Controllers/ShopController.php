@@ -91,7 +91,7 @@ class ShopController extends Controller
             return $reservation;
         });
 
-        return view('mypage.reservation', compact('reservations', $data));
+        return view('mypage.reservation', compact('reservations', 'data'));
     }
 
     // 予約履歴の表示

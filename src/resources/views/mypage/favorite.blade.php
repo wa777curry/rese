@@ -14,7 +14,7 @@
 <div class="mypage__main">
     <div class="mypage__menu">
         <div class="mypage__menu--ttl">
-            <div class="mypage__menu--item"><a href="{{ route('getFavorite') }}">お気に入り店舗</a></div>
+            <div class="mypage__menu--item active"><a href="{{ route('getFavorite') }}">お気に入り店舗</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getReservation') }}">予約状況</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getHistory') }}">予約履歴</a></div>
         </div>

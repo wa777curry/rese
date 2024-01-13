@@ -6,6 +6,7 @@ use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
 use App\Http\Controllers\ManagementController;
 use App\Http\Controllers\FavoriteController;
+use App\Http\Controllers\ModalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,6 +48,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/favorite', [ShopController::class, 'getFavorite'])->name('getFavorite');
     Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
     Route::get('/mypage/history', [ShopController::class, 'getHistory'])->name('getHistory');
+
+    Route::get('/modal', [ModalController::class, 'modal']);
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');
