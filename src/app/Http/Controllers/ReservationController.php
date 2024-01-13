@@ -4,8 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservationRequest;
 use App\Models\Reservation;
+use App\Models\Shop;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Redirect;
 
 class ReservationController extends Controller
 {
@@ -33,9 +33,17 @@ class ReservationController extends Controller
     }
 
     // 予約変更
-    public function editReservation($id) {
-        // 編集ページを表示するためのロジックを追加
-        return view('reservation.edit', ['reservationId' => $id]);
+    public function postEditReservation(ReservationRequest $request, $id) {
+        // 既存の予約情報を取得
+        $reservation = Reservation::find($id);
+        $reservation->update([
+            'reservation_date' => $request->input('reservation_date'),
+            'reservation_time' => $request->input('reservation_time'),
+            'reservation_number' => $request->input('reservation_number'),
+        ]);
+        // 予約情報を取得し直す
+        $reservation = Reservation::find($id);
+        return redirect()->route('getReservation')->with('success', '予約が変更されました');
     }
 
     // 予約削除

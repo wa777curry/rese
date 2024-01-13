@@ -61,21 +61,25 @@
     margin: 0;
 }
 
-
-
 .mypage__form {
-    width: 50%;
+    width: 45%;
     background: #2988bc;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     color: #fff;
     font-size: 90%;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
     padding: 20px;
 }
 
 .mypage__form--ttl {
     display: flex;
+}
+
+.mypage__form-edit {
+    background: #50a6d5;
+    border-radius: 5px;
+    padding: 25px 15px 10px 15px;
 }
 
 .mypage__history {
@@ -87,61 +91,52 @@
 }
 
 .mypage__form--bottom {
-    margin-top: 10px;
-    text-align: right;
+    margin: 10px 0;
+    text-align: center;
 }
 
 .mypage__form--edit-icon {
-    padding-left: 15px;
-}
-
-
-/* モーダルのスタイル */
-.modal {
-    display: none;
-    position: fixed;
-    z-index: 1;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100%;
-    overflow: auto;
-    background-color: rgba(0, 0, 0, 0.3);
-}
-
-/* モーダルの中身 */
-.modal-content {
-    background-color: #f4eade;
-    color: #000;
-    margin: 15% auto;
-    padding: 10px;
-    text-align: center;
-    align-items: center;
-    border-radius: 5px;
-    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
-    width: 30%;
-    font-size: 110%;
-}
-
-.close {
-    color: #333;
-    float: right;
-    font-size: 28px;
-    font-weight: bold;
-}
-
-.close:hover,
-.close:focus {
-    color: #000;
-    text-decoration: none;
-    cursor: pointer;
-}
-
-.modal-content button {
-    background-color: #2988bc;
+    padding: 5px 10px;
+    background: #2988bc;
     color: #fff;
-    padding: 10px 20px;
+    font-size: 100%;
     border: none;
+}
+
+#selectDate {
+    width: 100%;
+    margin: 2px 10px;
+    padding: 5px;
     border-radius: 5px;
+    border: none;
+}
+
+#selectTime,
+#selectNumber {
+    width: 60%;
+    margin: 2px 10px;
+    padding: 7px;
+    border-radius: 5px;
+    border: none;
+}
+
+.mypage__form--save-icon {
+    width: 100%;
+    padding: 5px;
+    text-align: center;
+    background: #2f496e;
+    color: #fff;
+    font-size: 100%;
+    border: none;
     cursor: pointer;
+    border-radius: 5px;
+}
+
+.form__error {
+    text-align: left;
+    color: #ffe3e3;
+}
+
+.mypage__form--qr-code {
+    text-align: center;
 }

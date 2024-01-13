@@ -16,7 +16,7 @@
         <div class="mypage__menu--ttl">
             <div class="mypage__menu--item"><a href="{{ route('getFavorite') }}">お気に入り店舗</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getReservation') }}">予約状況</a></div>
-            <div class="mypage__menu--item"><a href="{{ route('getHistory') }}">予約履歴</a></div>
+            <div class="mypage__menu--item active"><a href="{{ route('getHistory') }}">予約履歴</a></div>
         </div>
     </div>
 
@@ -47,8 +47,7 @@
                         <span>{{ $reservation->reservation_number }}人</span>
                     </div>
                     <div class="mypage__form--bottom">
-                        <span class="mypage__form--edit-icon"><i class="fa fa-star fa-2x"></i></span>
-                        <span class="mypage__form--edit-icon"><i class="fa fa-commenting fa-2x"></i></span>
+                        <span class="mypage__form--edit-icon"><i class="fa fa-commenting fa-2x"></i> コメントする</span>
                     </div>
                 </div>
             </div>

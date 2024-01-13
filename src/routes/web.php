@@ -39,14 +39,14 @@ Route::middleware('auth')->group(function () {
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
-    Route::get('/reservation/edit/{id}', [ReservationController::class, 'editReservation'])->name('editReservation');
-    Route::get('/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
-    Route::get('/reservation/qr/{id}', [ReservationController::class, 'qrReservation'])->name('qrReservation');
-
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');
     Route::get('/mypage/favorite', [ShopController::class, 'getFavorite'])->name('getFavorite');
     Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
+    Route::post('/mypage/reservation/{id}', [ReservationController::class, 'postEditReservation'])->name('postEditReservation');
     Route::get('/mypage/history', [ShopController::class, 'getHistory'])->name('getHistory');
+
+    Route::get('/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
+    Route::get('/reservation/qr/{id}', [ReservationController::class, 'qrReservation'])->name('qrReservation');
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');

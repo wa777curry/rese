@@ -71,6 +71,8 @@ class ShopController extends Controller
     // 予約状況の表示
     public function getReservation() {
         $data = $this->getMypageData();
+        list($times, $numbers) = $this->detailContent();
+
         $userId = Auth::id(); // ログインIDの取得
         $reservations = Reservation::where('user_id', $userId)
             // 現日時より未来の情報を表示
@@ -91,7 +93,7 @@ class ShopController extends Controller
             return $reservation;
         });
 
-        return view('mypage.reservation', compact('reservations', $data));
+        return view('mypage.reservation', compact('reservations', 'data', 'times', 'numbers'));
     }
 
     // 予約履歴の表示
