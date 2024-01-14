@@ -6,9 +6,19 @@ use App\Http\Requests\ShopRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Shop;
+use Illuminate\Http\Request;
 
-class ManagementController extends Controller
+class AdminController extends Controller
 {
+    // ログイン関連
+    public function getAdmin() {
+        return view('admin.login');
+    }
+
+    public function postAdmin(Request $request) {
+        // ここにログイン処理を実装する
+    }
+
     // 店舗情報の表示
     public function getManagement() {
         $areas = Area::all(); // すべてのエリアデータを取得

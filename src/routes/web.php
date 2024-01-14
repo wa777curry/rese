@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
-use App\Http\Controllers\ManagementController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FavoriteController;
 
 /*
@@ -49,4 +49,16 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');
+});
+
+// 管理者向けのルート
+Route::prefix('admin')->group(function () {
+    Route::get('/login', [AdminController::class, 'getAdmin'])->name('getAdmin');
+    Route::post('/login', [AdminController::class, 'postAdmin'])->name('postAdmin');
+});
+
+Route::middleware(['auth', 'admin'])->group(function () {
+    Route::get('/admin/dashboard', function () {
+        return 'Admin Dashboard';
+    });
 });
