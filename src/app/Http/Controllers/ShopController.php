@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Favorite;
 use App\Models\Genre;
+use App\Models\Rating;
 use App\Models\Reservation;
 use App\Models\Shop;
 use DB;
@@ -45,11 +46,11 @@ class ShopController extends Controller
         return view('index', compact('shops', 'areas', 'genres', 'k', 'a', 'g'));
     }
 
-    private function getMypageData() {
-        $areas = Area::all();
-        $genres = Genre::all();
-        $query = $this->shopData();
-        return compact('areas', 'genres', 'query');
+    // 店舗詳細関連
+    public function detail($id) {
+        $shop = Shop::find($id);
+        list($times, $numbers) = $this->detailContent();
+        return view('detail', compact('shop', 'times', 'numbers'));
     }
 
     // マイページの表示
@@ -109,6 +110,7 @@ class ShopController extends Controller
                             ->where('reservation_time', '<', now()->format('H:i'));
                     });
             })
+            ->with('rating')
             ->orderBy('reservation_date', 'desc') // 日付昇順
             ->orderBy('reservation_time') // 時間昇順
             ->get();
@@ -119,7 +121,14 @@ class ShopController extends Controller
             return $reservation;
         });
 
-        return view('mypage.history', compact('pastReservations', $data));
+        return view('mypage.history', compact('pastReservations', "data"));
+    }
+
+    private function getMypageData() {
+        $areas = Area::all();
+        $genres = Genre::all();
+        $query = $this->shopData();
+        return compact('areas', 'genres', 'query');
     }
 
     private function shopData() {
@@ -130,13 +139,6 @@ class ShopController extends Controller
         $query->orderBy('shops.id');
 
         return $query;
-    }
-
-    // 店舗詳細関連
-    public function detail($id) {
-        $shop = Shop::find($id);
-        list($times, $numbers) = $this->detailContent();
-        return view('detail', compact('shop', 'times', 'numbers'));
     }
 
     // 予約フォームの詳細

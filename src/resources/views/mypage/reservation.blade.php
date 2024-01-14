@@ -29,7 +29,7 @@
                 <div class="mypage__form--ttl">
                     <span class="mypage__form--icon"><i class="fa fa-clock-o fa-2x"></i>　予約{{ $reservation->number }}</span>
                 </div>
-                <div class="mypage__history accordion-content">
+                <div class="mypage__history--content">
                     <div class="reservation__confirmation--content">
                         <span class="reservation__confirmation--ttl">Shop</span>
                         <span>{{ $reservation->shop->shop_name }}</span>
@@ -46,6 +46,7 @@
                         <span class="reservation__confirmation--ttl">Number</span>
                         <span>{{ $reservation->reservation_number }}人</span>
                     </div>
+
                     <div class="mypage__form--bottom">
                         <button class="mypage__form--edit-icon" onclick="toggleReservationForm({{ $reservation->id }})">
                             <i class="fa fa-edit fa-2x"></i> 予約の変更
@@ -55,9 +56,9 @@
                             <i class="fa fa-times-circle fa-2x"></i> 予約の削除
                         </a>
 
-                        <a href="javascript:void(0);" class="mypage__form--edit-icon" onclick="toggleQRCode({{ $reservation->id }})">
+                        <button href="javascript:void(0);" class="mypage__form--edit-icon" onclick="toggleQRCode({{ $reservation->id }})">
                             <i class="fa fa-qrcode fa-2x"></i> QRコード
-                        </a>
+                        </button>
                     </div>
                 </div>
 

@@ -44,9 +44,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
     Route::post('/mypage/reservation/{id}', [ReservationController::class, 'postEditReservation'])->name('postEditReservation');
     Route::get('/mypage/history', [ShopController::class, 'getHistory'])->name('getHistory');
-
-    Route::get('/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
-    Route::get('/reservation/qr/{id}', [ReservationController::class, 'qrReservation'])->name('qrReservation');
+    Route::post('/mypage/history/{id}', [ReservationController::class, 'postEditHistory'])->name('postEditHistory');
+    Route::get('/mypage/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');

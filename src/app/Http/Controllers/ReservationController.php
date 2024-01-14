@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ReservationRequest;
+use App\Models\Rating;
 use App\Models\Reservation;
-use App\Models\Shop;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
@@ -48,15 +49,27 @@ class ReservationController extends Controller
 
     // 予約削除
     public function deleteReservation($id) {
-        $reservation = Reservation::findOrFail($id);
+        $reservation = Reservation::find($id);
         $reservation->delete();
         return redirect()->route('getReservation');
     }
 
-    // QRコードの表示
-    public function qrReservation($id) {
-        // QRコード生成ロジックを追加
-        // 生成されたQRコード画像を表示するビューを返す
-        // または、直接画像を返すことも可能
+    // 予約履歴の評価・コメント処理
+    public function postEditHistory(Request $request, $id) {
+        // 既存の予約情報を取得
+        $reservation = Reservation::find($id);
+        $ratingData = [
+            'reservation_id' => $request->input('reservation_id'),
+            'rating' => $request->input('rating'),
+            'comment' => $request->input('comment'),
+        ];
+        $rating = Rating::where('reservation_id', $id)->first();
+
+        if (!$rating) {
+            // 評価が存在しない場合は新規作成
+            $reservation->rating()->create($ratingData);
+            return redirect()->route('getHistory')->with('success', '評価とコメントが保存されました');
+        }
+        return redirect()->route('getHistory')->with('error', '既に評価とコメントが存在します');
     }
 }
