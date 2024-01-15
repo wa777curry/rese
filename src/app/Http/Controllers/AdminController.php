@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\UserRequest;
-use Auth;
+use App\Models\Representative;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
@@ -12,27 +13,33 @@ class AdminController extends Controller
         return view('admin.login');
     }
 
-    public function postAdmin(UserRequest $request) {
-        $credentials = $request->only('email', 'password');
-        if (Auth::attempt($credentials)) {
-            // 選択された役割に基づいてリダイレクト
-            $role = $request->input('role');
+    public function postAdmin(Request $request) {
+        $credentials = $request->only(['email', 'password']);
 
-            switch ($role) {
-                case 'admin':
-                    return redirect()->route('admin.dashboard'); // 仮の管理画面のダッシュボードルート
-                case 'representative':
-                    return redirect()->route('representative.dashboard'); // 仮の店舗代表者画面のダッシュボードルート
+        if (Auth::guard('admin')->attempt($credentials)) {
+            return redirect()->route('getManagement');
             }
-        } else {
             // 認証に失敗した場合
             return redirect()->route('getAdmin')->withErrors(['postAdmin' => 'ログインに失敗しました']);
-        }
     }
 
-    // ログアウト関連
-    public function logout() {
-        Auth::logout();
-        return redirect('/');
+    //　管理画面の表示
+    public function getManagement() {
+        return view('admin.admin');
+    }
+
+    // 店舗代表者の登録
+    public function postManagement(Request $request) {
+        Representative::create([
+            'representativename' => $request->input('representativename'),
+            'email' => $request->input('email'),
+            'password' => bcrypt($request->input('password')),
+        ]);
+        return view('admin.admin');
+    }
+
+    public function listManagement() {
+        $representatives = Representative::all();
+        return view('admin.list', ['representatives' => $representatives]);
     }
 }

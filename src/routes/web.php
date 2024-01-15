@@ -28,9 +28,6 @@ Route::get('/', [ShopController::class, 'index'])->name('index');
 
 Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('detail');
 
-Route::get('/management', [ManagementController::class, 'getManagement'])->name('getManagement');
-Route::post('/management', [ManagementController::class, 'postManagement'])->name('postManagement');
-
 Route::middleware('auth')->group(function () {
     Route::get('/thanks', [UserController::class, 'thanks']);
 
@@ -43,22 +40,22 @@ Route::middleware('auth')->group(function () {
     Route::get('/mypage/favorite', [ShopController::class, 'getFavorite'])->name('getFavorite');
     Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
     Route::post('/mypage/reservation/{id}', [ReservationController::class, 'postEditReservation'])->name('postEditReservation');
+    Route::get('/mypage/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
     Route::get('/mypage/history', [ShopController::class, 'getHistory'])->name('getHistory');
     Route::post('/mypage/history/{id}', [ReservationController::class, 'postEditHistory'])->name('postEditHistory');
-    Route::get('/mypage/reservation/delete/{id}', [ReservationController::class, 'deleteReservation'])->name('deleteReservation');
 
     Route::get('/favorite/{shop}', [FavoriteController::class, 'favorite'])->name('favorite');
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');
 });
 
-// 管理者向けのルート
+// 管理者向け
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'getAdmin'])->name('getAdmin');
     Route::post('/login', [AdminController::class, 'postAdmin'])->name('postAdmin');
 });
 
-Route::middleware(['auth', 'admin'])->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return 'Admin Dashboard';
-    });
+Route::middleware(['auth:admin'])->group(function () {
+    Route::get('/admin', [AdminController::class, 'getManagement'])->name('getManagement');
+    Route::post('/admin', [AdminController::class, 'postManagement'])->name('postManagement');
+    Route::get('/list', [AdminController::class, 'listManagement'])->name('listManagement');
 });

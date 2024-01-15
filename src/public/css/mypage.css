@@ -108,6 +108,14 @@
     border: none;
 }
 
+#selectText {
+    width: 160%;
+    margin: 2px 10px;
+    padding: 5px;
+    border-radius: 5px;
+    border: none;
+}
+
 #selectTime,
 #selectNumber {
     width: 60%;
@@ -155,4 +163,25 @@
     border-radius: 5px;
     margin: 5px 1px;
     resize: none;
+}
+
+.data-table {
+    width: 80%;
+    border-collapse: collapse;
+    margin-top: 5px;
+}
+
+.data-table thead {
+    background-color: #2988bc;
+    color: #fff;
+    border-radius: 5px;
+    padding-left: 20px;
+}
+
+.data-table th,
+.data-table td {
+    border: none;
+    padding: 6px;
+    padding-left: 20px;
+    text-align: left;
 }

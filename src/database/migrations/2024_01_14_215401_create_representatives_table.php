@@ -15,7 +15,7 @@ class CreateRepresentativesTable extends Migration
     {
         Schema::create('representatives', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('shop_id')->constrained();
+            $table->string('representativename');
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

@@ -15,7 +15,7 @@ class AdminMiddleware
      * @return \Illuminate\Http\Response|\Illuminate\Http\RedirectResponse
      */
     public function handle($request, Closure $next) {
-        if (Auth::check() && Auth::user()->isAdmin()) {
+        if (Auth::check() && Auth::guard('admins')->isAdmin()) {
             return $next($request);
         }
         return redirect('/');

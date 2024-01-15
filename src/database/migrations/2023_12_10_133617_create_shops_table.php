@@ -15,6 +15,7 @@ class CreateShopsTable extends Migration
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->string('shop_name');
+            $table->foreignId('representative_id')->constrained();
             $table->foreignId('area_id')->constrained();
             $table->foreignId('genre_id')->constrained();
             $table->text('shop_summary');
