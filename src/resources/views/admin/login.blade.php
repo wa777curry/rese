@@ -18,10 +18,6 @@
                 <div class="icon"><i class="fa fa-lock fa-lg"></i></div>
                 <input type="password" name="password" placeholder="Password">
             </div>
-            <div class="login__form--text-ad">
-                <input type="radio" name="role" value="admin" checked>　管理者
-                <input type="radio" name="role" value="representative">　店舗代表者
-            </div>
             <div class="login__form--btn">
                 <button class="button" type="submit">ログイン</button>
             </div>

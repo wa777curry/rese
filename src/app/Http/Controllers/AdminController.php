@@ -42,4 +42,22 @@ class AdminController extends Controller
         $representatives = Representative::all();
         return view('admin.list', ['representatives' => $representatives]);
     }
+
+
+
+    public function uploadForm()
+    {
+        return view('admin.upload');
+    }
+
+    public function upload(Request $request)
+    {
+        // ディレクトリ名
+        $dir = 'images';
+
+        // sampleディレクトリに画像を保存
+        $request->file('image')->store('public/' . $dir);
+
+        return redirect('/');
+    }
 }

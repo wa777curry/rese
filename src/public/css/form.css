@@ -89,15 +89,11 @@
     flex-direction: column;
     justify-content: center;
     width: 360px;
-    height: 280px;
+    height: 210px;
     margin: 30px auto 20px auto;
     overflow: hidden;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
     background: #fff;
     position: relative;
-}
-
-.login__form--text-ad input {
-    margin-left: 50px;
 }

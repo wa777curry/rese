@@ -1,0 +1,37 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
+
+class genresSeeder extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        DB::table('genres')->insert([
+            'genre_name' => 'イタリアン',
+        ]);
+
+        DB::table('genres')->insert([
+            'genre_name' => 'ラーメン',
+        ]);
+
+        DB::table('genres')->insert([
+            'genre_name' => '居酒屋',
+        ]);
+
+        DB::table('genres')->insert([
+            'genre_name' => '寿司',
+        ]);
+
+        DB::table('genres')->insert([
+            'genre_name' => '焼肉',
+        ]);
+    }
+}

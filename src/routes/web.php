@@ -58,4 +58,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin', [AdminController::class, 'getManagement'])->name('getManagement');
     Route::post('/admin', [AdminController::class, 'postManagement'])->name('postManagement');
     Route::get('/list', [AdminController::class, 'listManagement'])->name('listManagement');
+
+    Route::get('/upload', [AdminController::class, 'uploadForm']);
+    Route::post('/upload', [AdminController::class, 'upload']);
 });
