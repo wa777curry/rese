@@ -37,8 +37,6 @@ class ReservationRequest extends FormRequest
                     ->where('reservation_date', $this->input('reservation_date'))
                     ->where('reservation_time', $this->input('reservation_time'))
             ],
-            'rating' => ['required'],
-            'comment' => ['required', 'max:100'],
         ];
     }
 
@@ -50,7 +48,6 @@ class ReservationRequest extends FormRequest
             'reservation_time.required' => '※予約時間を選択してください',
             'reservation_number.required' => '※予約人数を選択してください',
             'unique' => '※指定された日時には既に予約があります',
-            'comment.max' => '※コメントは100文字以内にしてください',
         ];
     }
 }
