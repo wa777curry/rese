@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\Area;
 use App\Models\Favorite;
 use App\Models\Genre;
-use App\Models\Rating;
 use App\Models\Reservation;
 use App\Models\Shop;
 use DB;
@@ -135,7 +134,7 @@ class ShopController extends Controller
         $query = DB::table('shops');
         $query->join('areas', 'shops.area_id', '=', 'areas.id');
         $query->join('genres', 'shops.genre_id', '=', 'genres.id');
-        $query->select('shops.*', 'areas.area_name', 'genres.genre_name',);
+        $query->select('shops.*', 'areas.area_name', 'genres.genre_name', 'genres.image_url');
         $query->orderBy('shops.id');
 
         return $query;

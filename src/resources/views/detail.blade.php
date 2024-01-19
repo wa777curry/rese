@@ -15,7 +15,7 @@
             <div class="shop__detail--name">{{ $shop->shop_name }}</div>
         </div>
         <div class="shop__detail--img">
-            <img src="{{ $shop->image_url }}">
+            <img src="{{ $shop->genre->image_url }}">
         </div>
         <div class="shop__detail--tag">#{{ $shop->area->area_name }}</div>
         <div class="shop__detail--tag">#{{ $shop->genre->genre_name }}</div>

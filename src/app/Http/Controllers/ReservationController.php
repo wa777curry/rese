@@ -12,8 +12,8 @@ class ReservationController extends Controller
 {
     // 予約入力関連
     public function postReservation(ReservationRequest $request) {
-        if (Auth::check()) { // ログインしているかどうか
-            $user = Auth::user(); // ログインユーザーの取得
+        if (Auth::check()) {
+            $user = Auth::user();
 
             Reservation::create([
                 'user_id' => $user->id,
@@ -42,8 +42,6 @@ class ReservationController extends Controller
             'reservation_time' => $request->input('reservation_time'),
             'reservation_number' => $request->input('reservation_number'),
         ]);
-        // 予約情報を取得し直す
-        $reservation = Reservation::find($id);
         return redirect()->route('getReservation')->with('success', '予約が変更されました');
     }
 

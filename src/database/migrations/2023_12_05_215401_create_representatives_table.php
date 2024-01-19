@@ -15,7 +15,7 @@ class CreateRepresentativesTable extends Migration
     {
         Schema::create('representatives', function (Blueprint $table) {
             $table->id();
-            $table->string('representative_name');
+            $table->string('representativename')->unique();
             $table->string('email')->unique();
             $table->string('password');
             $table->timestamps();

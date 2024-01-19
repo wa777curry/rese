@@ -12,7 +12,7 @@ class Shop extends Model
     protected $table = 'shops';
 
     protected $fillable = [
-        'shop_name', 'area_id', 'genre_id', 'shop_summary', 'image_url'
+        'representative_id', 'shop_name', 'area_id', 'genre_id', 'shop_summary'
     ];
 
     public function users() {
@@ -35,5 +35,9 @@ class Shop extends Model
 
     public function favorites() {
         return $this->belongsToMany(Favorite::class, 'favorites');
+    }
+
+    public function representative() {
+        return $this->belongsTo(Representative::class);
     }
 }

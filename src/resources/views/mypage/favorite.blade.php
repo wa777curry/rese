@@ -27,7 +27,7 @@
                 @foreach($favoriteShops as $shop)
                 <div class="shop__list--card">
                     <div class="shop__list--img">
-                        <img src="{{ $shop->shop->image_url }}">
+                        <img src="{{ $shop->shop->genre->image_url }}">
                     </div>
                     <div class="shop__content">
                         <div class="shop__content--name">{{ $shop->shop->shop_name }}</div>

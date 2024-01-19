@@ -8,7 +8,7 @@ class Genre extends Model
 {
     protected $table = 'genres';
 
-    protected $fillable = ['genre_name'];
+    protected $fillable = ['genre_name', 'image_url'];
 
     public function shops() {
         return $this->hasMany(Shop::class);

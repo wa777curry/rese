@@ -59,6 +59,10 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin', [AdminController::class, 'postManagement'])->name('postManagement');
     Route::get('/list', [AdminController::class, 'listManagement'])->name('listManagement');
 
-    Route::get('/upload', [AdminController::class, 'uploadForm']);
-    Route::post('/upload', [AdminController::class, 'upload']);
+    Route::get('/operation', [AdminController::class, 'getOperation'])->name('getOperation');
+    Route::get('/upload', [AdminController::class, 'getUpload'])->name('getUpload');
+    Route::post('/upload', [AdminController::class, 'postUpload'])->name('postUpload');
+    Route::get('/edit/{id}', [AdminController::class, 'getEdit'])->name('getEdit');
+    Route::post('/edit/{id}', [AdminController::class, 'postEdit'])->name('postEdit');
+    Route::get('/shoplist', [AdminController::class, 'getShoplist'])->name('getShoplist');
 });

@@ -1,9 +1,9 @@
 @extends('layouts.app-ad')
 
 @section('css')
-<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 <link rel="stylesheet" href="{{ asset('css/index.css') }}">
 <link rel="stylesheet" href="{{ asset('css/detail.css') }}">
+<link rel="stylesheet" href="{{ asset('css/mypage.css') }}">
 @endsection
 
 @section('content')
