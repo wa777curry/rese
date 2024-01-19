@@ -6,12 +6,14 @@
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい
 
 ## ユーザーテストURL：http://localhost/
-* テストアカウント：test@test  
+* テストアカウント：test@testmail  
 * テストパスワード：11111111
 
 ## 管理者テストURL：http://localhost/admin/login/
-* テストアカウント：admin@testmail  
-* テストパスワード：admin123456
+* 管理者テストアカウント：admin@testmail  
+* 管理者テストパスワード：admin123456  
+* 店舗代表者テストアカウント：sushi@testmail  
+* 店舗代表者テストパスワード：sushi123456
 
 ## 機能一覧
 * 会員登録
@@ -25,10 +27,10 @@
 * Docker, Docker Compose
 
 ## テーブル設計
-![テーブル仕様書](https://github.com/wa777curry/rese/assets/136479019/195004aa-3a33-46d1-9b25-eb30edc779f7)
+![table](https://github.com/wa777curry/rese/assets/136479019/5c2f31e1-a4e7-493d-8bb0-226940457425)
 
 ## ER図
-![ER図](https://github.com/wa777curry/rese/assets/136479019/a4dcefb9-73ce-423c-993b-61cbab07ce44)
+![er drawio](https://github.com/wa777curry/rese/assets/136479019/debecf65-e239-45e5-9593-e8a4d27ab12f)
 
 ## 環境構築
 1. DockerとDocker Composeをインストールしてください
