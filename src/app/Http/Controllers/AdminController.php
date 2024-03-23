@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\RepresentativeRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Representative;
@@ -34,7 +35,7 @@ class AdminController extends Controller
     }
 
     // 店舗代表者の登録
-    public function postManagement(Request $request) {
+    public function postManagement(RepresentativeRequest $request) {
         Representative::create([
             'representativename' => $request->input('representativename'),
             'email' => $request->input('email'),

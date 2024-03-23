@@ -33,17 +33,32 @@
                                     <input id="selectText" type="text" name="representativename" value="{{ old('representativename') }}">
                                 </span>
                             </div>
+                            <div class="form__error">
+                                @error('representativename')
+                                {{ $message }}
+                                @enderror
+                            </div>
                             <div class="reservation__confirmation--content">
                                 <span class="reservation__confirmation--ttl">メールアドレス</span>
                                 <span>
                                     <input id="selectText" type="email" name="email" value="{{ old('email') }}">
                                 </span>
                             </div>
+                            <div class="form__error">
+                                @error('email')
+                                {{ $message }}
+                                @enderror
+                            </div>
                             <div class="reservation__confirmation--content">
                                 <span class="reservation__confirmation--ttl">パスワード</span>
                                 <span>
                                     <input id="selectText" type="password" name="password">
                                 </span>
+                            </div>
+                            <div class="form__error">
+                                @error('password')
+                                {{ $message }}
+                                @enderror
                             </div>
                             <div class="mypage__form--bottom">
                                 <button class="mypage__form--edit-icon" type="submit">
