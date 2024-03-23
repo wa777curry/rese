@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RepresentativeRequest;
+use App\Http\Requests\UploadRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Representative;
@@ -68,7 +69,7 @@ class AdminController extends Controller
     }
 
     // 店舗の登録
-    public function postUpload(Request $request) {
+    public function postUpload(UploadRequest $request) {
         $representative = Auth::guard('representative')->user();
 
         Shop::create([
