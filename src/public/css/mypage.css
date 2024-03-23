@@ -195,3 +195,13 @@
     padding-left: 20px;
     text-align: left;
 }
+
+.data-table th:first-child {
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.data-table th:last-child {
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
