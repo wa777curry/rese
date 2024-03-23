@@ -10,8 +10,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ReservationController extends Controller
 {
-    // 予約入力関連
-    public function postReservation(ReservationRequest $request) {
+    // 予約入力処理
+    public function postReservation(ReservationRequest $request)
+    {
         if (Auth::check()) {
             $user = Auth::user();
 
@@ -28,12 +29,13 @@ class ReservationController extends Controller
         }
     }
 
-    // 予約完了
-    public function done() {
+    // 予約完了画面の表示
+    public function done()
+    {
         return view('done');
     }
 
-    // 予約変更
+    // 予約変更処理
     public function postEditReservation(ReservationRequest $request, $id) {
         // 既存の予約情報を取得
         $reservation = Reservation::find($id);
@@ -45,7 +47,7 @@ class ReservationController extends Controller
         return redirect()->route('getReservation')->with('success', '予約が変更されました');
     }
 
-    // 予約削除
+    // 予約削除処理
     public function deleteReservation($id) {
         $reservation = Reservation::find($id);
         $reservation->delete();

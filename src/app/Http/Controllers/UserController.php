@@ -8,12 +8,15 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    // ログイン関連
-    public function getLogin() {
+    // ログイン画面の表示
+    public function getLogin()
+    {
         return view('auth.login');
     }
 
-    public function postLogin(UserRequest $request) {
+    // ログイン処理
+    public function postLogin(UserRequest $request)
+    {
         $accepts = $request->only('email', 'password');
 
         if (Auth::attempt($accepts)) {
@@ -24,12 +27,15 @@ class UserController extends Controller
         }
     }
 
-    // 会員登録関連
-    public function getRegister() {
+    // 会員登録画面の表示
+    public function getRegister()
+    {
         return view('auth.register');
     }
 
-    public function postRegister(UserRequest $request) {
+    // 会員登録処理
+    public function postRegister(UserRequest $request)
+    {
         User::create([
             'username' => $request->input('username'),
             'email' => $request->input('email'),
@@ -38,12 +44,15 @@ class UserController extends Controller
         return view('thanks');
     }
 
-    public function thanks() {
+    // 登録完了画面の表示
+    public function thanks()
+    {
         return view('thanks');
     }
 
-    // ログアウト関連
-    public function logout() {
+    // ログアウト処理
+    public function logout()
+    {
         Auth::logout();
         return redirect('/');
     }

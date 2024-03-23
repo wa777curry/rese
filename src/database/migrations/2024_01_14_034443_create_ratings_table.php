@@ -18,7 +18,6 @@ class CreateRatingsTable extends Migration
             $table->foreignId('reservation_id')->constrained();
             $table->integer('rating')->nullable();
             $table->text('comment')->nullable();
-            $table->string('comment_url')->nullable();
             $table->timestamps();
         });
     }

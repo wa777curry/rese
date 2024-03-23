@@ -13,12 +13,15 @@ use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    // ログイン関連
-    public function getAdmin() {
+    // 管理者ログイン画面の表示
+    public function getAdmin()
+    {
         return view('admin.login');
     }
 
-    public function postAdmin(Request $request) {
+    // 管理者ログイン処理
+    public function postAdmin(Request $request)
+    {
         $credentials = $request->only(['email', 'password']);
 
         if (Auth::guard('admin')->attempt($credentials)) {
@@ -31,12 +34,14 @@ class AdminController extends Controller
     }
 
     // 管理者画面の表示
-    public function getManagement() {
+    public function getManagement()
+    {
         return view('admin.admin');
     }
 
     // 店舗代表者の登録
-    public function postManagement(RepresentativeRequest $request) {
+    public function postManagement(RepresentativeRequest $request)
+    {
         Representative::create([
             'representativename' => $request->input('representativename'),
             'email' => $request->input('email'),
@@ -45,31 +50,34 @@ class AdminController extends Controller
         return redirect()->route('listManagement');
     }
 
-    // 店舗代表者の一覧
-    public function listManagement() {
+    // 店舗代表者一覧の表示
+    public function listManagement()
+    {
         $representatives = Representative::all();
         return view('admin.list', compact('representatives'));
     }
 
-    // 予約状況の確認の表示
-    public function getOperation() {
+    // 予約状況確認の表示
+    public function getOperation()
+    {
         $representative = Auth::guard('representative')->user();
         $currentDate = now()->toDateString();
         $reservations = $representative->reservations
             ->where('reservation_date', '>=', $currentDate);
-
         return view('admin.operation', compact('reservations'));
     }
 
     // 店舗情報登録の表示
-    public function getUpload(Request $request) {
+    public function getUpload(Request $request)
+    {
         $areas = Area::all();
         $genres = Genre::all();
         return view('admin.upload', compact('areas', 'genres'));
     }
 
-    // 店舗の登録
-    public function postUpload(UploadRequest $request) {
+    // 店舗の登録処理
+    public function postUpload(UploadRequest $request)
+    {
         $representative = Auth::guard('representative')->user();
 
         Shop::create([
@@ -83,14 +91,16 @@ class AdminController extends Controller
     }
 
     // 店舗登録一覧の表示
-    public function getShoplist() {
+    public function getShoplist()
+    {
         $representative = Auth::guard('representative')->user();
         $shops = $representative->shops;
         return view('admin.shoplist', compact('shops'));
     }
 
     // 編集画面の表示
-    public function getEdit($id) {
+    public function getEdit($id)
+    {
         $shop = Shop::findOrFail($id);
         $areas = Area::all();
         $genres = Genre::all();
@@ -98,9 +108,9 @@ class AdminController extends Controller
     }
 
     // 編集画面からの更新処理
-    public function postEdit(Request $request, $id) {
+    public function postEdit(Request $request, $id)
+    {
         $shop = Shop::findOrFail($id);
-
         // フォームから送信されたデータを更新
         $shop->update([
             'shop_name' => $request->input('shop_name'),
@@ -109,12 +119,11 @@ class AdminController extends Controller
             'shop_summary' => $request->input('shop_summary'),
             // 他の更新対象のカラムも同様に更新
         ]);
-
         return redirect()->route('getShoplist');
     }
 
-
-    public function storage(Request $request) {
+    public function storage(Request $request)
+    {
         // ディレクトリ名
         $dir = 'images';
         // sampleディレクトリに画像を保存

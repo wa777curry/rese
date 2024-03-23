@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Auth;
 
 class ShopController extends Controller
 {
-    // 店舗一覧表示と検索
-    public function index(Request $request){
+    // 店舗一覧表示と検索処理
+    public function index(Request $request)
+    {
         $areas = Area::all();
         $genres = Genre::all();
 
@@ -46,26 +47,30 @@ class ShopController extends Controller
     }
 
     // 店舗詳細表示
-    public function detail($id) {
+    public function detail($id)
+    {
         $shop = Shop::find($id);
         list($times, $numbers) = $this->detailContent();
         return view('detail', compact('shop', 'times', 'numbers'));
     }
 
-    // 口コミページ表示
-    public function reviews($id) {
+    // 口コミ画面表示
+    public function reviews($id)
+    {
         $shop = Shop::find($id);
         return view('reviews', compact('shop'));
     }
 
     // マイページ表示
-    public function getMypage() {
+    public function getMypage()
+    {
         $data = $this->getMypageData();
         return view('mypage', $data);
     }
 
     // お気に入り店舗の表示
-    public function getFavorite() {
+    public function getFavorite()
+    {
         $data = $this->getMypageData();
         $userId = Auth::id(); // ログインIDの取得
         $favoriteShops = Favorite::where('user_id', $userId)->with('shop')
@@ -75,7 +80,8 @@ class ShopController extends Controller
     }
 
     // 予約状況の表示
-    public function getReservation() {
+    public function getReservation()
+    {
         $data = $this->getMypageData();
         list($times, $numbers) = $this->detailContent();
 
@@ -103,7 +109,8 @@ class ShopController extends Controller
     }
 
     // 予約履歴の表示
-    public function getHistory() {
+    public function getHistory()
+    {
         $data = $this->getMypageData();
         $userId = Auth::id(); // ログインIDの取得
         $pastReservations = Reservation::where('user_id', $userId)
@@ -129,25 +136,27 @@ class ShopController extends Controller
         return view('mypage.history', compact('pastReservations', "data"));
     }
 
-    private function getMypageData() {
+    private function getMypageData()
+    {
         $areas = Area::all();
         $genres = Genre::all();
         $query = $this->shopData();
         return compact('areas', 'genres', 'query');
     }
 
-    private function shopData() {
+    private function shopData()
+    {
         $query = DB::table('shops');
         $query->join('areas', 'shops.area_id', '=', 'areas.id');
         $query->join('genres', 'shops.genre_id', '=', 'genres.id');
         $query->select('shops.*', 'areas.area_name', 'genres.genre_name', 'genres.image_url');
         $query->orderBy('shops.id');
-
         return $query;
     }
 
     // 予約フォームの詳細
-    private function detailContent() {
+    private function detailContent()
+    {
         $startTime = strtotime('10:00'); // 開始時間
         $endTime = strtotime('22:00'); // 終了時間
         $interval = 1 * 60 * 60; // 1時間置きに設定
