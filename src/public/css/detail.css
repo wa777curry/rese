@@ -5,9 +5,29 @@
     padding-bottom: 40px;
 }
 
+.reviews__main {
+    display: flex;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
 .shop__detail,
 .reservation__form {
     flex: 1;
+}
+
+.shop__data {
+    flex: 2;
+    margin: 50px;
+}
+
+.reviews__form {
+    flex: 3;
+}
+
+.reviews__main h1,
+.reviews__main h2 {
+    font-weight: normal;
 }
 
 .reservation__form {
@@ -47,6 +67,17 @@
 .shop__detail--tag {
     display: inline-block;
     margin: 20px auto;
+}
+
+.shop__detail--reviews {
+    margin-top: 20px;
+    text-decoration: underline;
+}
+
+.shop__detail--reviews a:hover {
+    color: #2988bc;
+    cursor: pointer;
+    text-decoration: underline #2988bc;
 }
 
 .reservation__form--ttl {

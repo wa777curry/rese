@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Auth;
 class ShopController extends Controller
 {
     // 店舗一覧表示と検索
-    public function index(Request $request) {
+    public function index(Request $request){
         $areas = Area::all();
         $genres = Genre::all();
 
@@ -45,14 +45,20 @@ class ShopController extends Controller
         return view('index', compact('shops', 'areas', 'genres', 'k', 'a', 'g'));
     }
 
-    // 店舗詳細関連
+    // 店舗詳細表示
     public function detail($id) {
         $shop = Shop::find($id);
         list($times, $numbers) = $this->detailContent();
         return view('detail', compact('shop', 'times', 'numbers'));
     }
 
-    // マイページの表示
+    // 口コミページ表示
+    public function reviews($id) {
+        $shop = Shop::find($id);
+        return view('reviews', compact('shop'));
+    }
+
+    // マイページ表示
     public function getMypage() {
         $data = $this->getMypageData();
         return view('mypage', $data);

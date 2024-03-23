@@ -52,6 +52,10 @@ class ReservationController extends Controller
         return redirect()->route('getReservation');
     }
 
+
+
+
+
     // 予約履歴の評価・コメント処理
     public function postEditHistory(Request $request, $id) {
         // 既存の予約情報を取得
