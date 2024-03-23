@@ -6,7 +6,7 @@ use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
 
-class representativesSeeder extends Seeder
+class RepresentativesSeeder extends Seeder
 {
     /**
      * Run the database seeds.

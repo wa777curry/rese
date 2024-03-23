@@ -11,7 +11,8 @@ class CreateShopsTable extends Migration
      *
      * @return void
      */
-    public function up() {
+    public function up()
+    {
         Schema::create('shops', function (Blueprint $table) {
             $table->id();
             $table->foreignId('representative_id')->constrained();
