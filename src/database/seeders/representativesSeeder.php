@@ -18,31 +18,31 @@ class RepresentativesSeeder extends Seeder
         DB::table('representatives')->insert([
             'representativename' => 'イタリアン店舗代表者',
             'email' => 'italy@testmail',
-            'password' => Hash::make('italy123456'),
+            'password' => Hash::make('password'),
         ]);
 
         DB::table('representatives')->insert([
             'representativename' => 'ラーメン店舗代表者',
             'email' => 'ramen@testmail',
-            'password' => Hash::make('ramen123456'),
+            'password' => Hash::make('password'),
         ]);
 
         DB::table('representatives')->insert([
             'representativename' => '居酒屋店舗代表者',
             'email' => 'izakaya@testmail',
-            'password' => Hash::make('izakaya123456'),
+            'password' => Hash::make('password'),
         ]);
 
         DB::table('representatives')->insert([
             'representativename' => '寿司屋店舗代表者',
             'email' => 'sushi@testmail',
-            'password' => Hash::make('sushi123456'),
+            'password' => Hash::make('password'),
         ]);
 
         DB::table('representatives')->insert([
             'representativename' => '焼肉屋店舗代表者',
             'email' => 'yakiniku@testmail',
-            'password' => Hash::make('yakiniku123456'),
+            'password' => Hash::make('password'),
         ]);
     }
 }

@@ -7,13 +7,13 @@
 
 ## ユーザーテストURL：http://localhost/
 * テストアカウント：test@testmail  
-* テストパスワード：11111111
+* テストパスワード：password
 
 ## 管理者テストURL：http://localhost/admin/login/
 * 管理者テストアカウント：admin@testmail  
-* 管理者テストパスワード：admin123456  
+* 管理者テストパスワード：password  
 * 店舗代表者テストアカウント：sushi@testmail  
-* 店舗代表者テストパスワード：sushi123456
+* 店舗代表者テストパスワード：password
 
 ## 機能一覧
 * 会員登録
