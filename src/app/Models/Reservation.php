@@ -10,15 +10,18 @@ class Reservation extends Model
         'user_id', 'shop_id', 'reservation_date', 'reservation_time', 'reservation_number'
     ];
 
-    public function user() {
+    public function user()
+    {
         return $this->belongsTo(User::class);
     }
 
-    public function shop() {
+    public function shop()
+    {
         return $this->belongsTo(Shop::class);
     }
 
-    public function rating() {
+    public function rating()
+    {
         return $this->hasOne(Rating::class);
     }
 }

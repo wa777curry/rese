@@ -10,7 +10,8 @@ class Area extends Model
 
     protected $fillable = ['area_name',];
 
-    public function shops() {
+    public function shops()
+    {
         return $this->hasMany(Shop::class);
     }
 }

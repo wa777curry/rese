@@ -47,11 +47,28 @@
         <div>
             <h2>体験を評価してください</h2>
         </div>
-        <div></div>
+        <div class="rate-form">
+            <input id="star5" type="radio" name="rate" value="5">
+            <label for="star5">★</label>
+            <input id="star4" type="radio" name="rate" value="4">
+            <label for="star4">★</label>
+            <input id="star3" type="radio" name="rate" value="3">
+            <label for="star3">★</label>
+            <input id="star2" type="radio" name="rate" value="2">
+            <label for="star2">★</label>
+            <input id="star1" type="radio" name="rate" value="1">
+            <label for="star1">★</label>
+        </div>
         <div>
             <h2>口コミを投稿</h2>
         </div>
-        <textarea></textarea>
+        <div class="textarea__review">
+            <textarea id="myTextarea" class="auto-bg" oninput="countCharacters()" maxlength="400"></textarea>
+            <label for="myTextarea" class="placeholder">カジュアルな夜のお出かけにおすすめのスポット</label>
+        </div>
+        <div>
+            <h5 id="characterCount" class="character-count">0/400（最高文字数）</h5>
+        </div>
         <div>
             <h2>画像の追加</h2>
         </div>
@@ -62,5 +79,5 @@
 @endsection
 
 @push('scripts')
-<script src="{{ asset('js/detail.js') }}"></script>
+<script src="{{ asset('js/review.js') }}"></script>
 @endpush

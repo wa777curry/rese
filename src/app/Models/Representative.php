@@ -8,11 +8,13 @@ class Representative extends Authenticatable
 {
     protected $fillable = ['representativename', 'email', 'password'];
 
-    public function shops() {
+    public function shops()
+    {
         return $this->hasMany(Shop::class);
     }
 
-    public function reservations() {
+    public function reservations()
+    {
         return $this->hasManyThrough(Reservation::class, Shop::class);
     }
 }

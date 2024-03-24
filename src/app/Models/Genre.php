@@ -10,7 +10,8 @@ class Genre extends Model
 
     protected $fillable = ['genre_name', 'image_url'];
 
-    public function shops() {
+    public function shops()
+    {
         return $this->hasMany(Shop::class);
     }
 }

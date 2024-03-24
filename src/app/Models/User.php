@@ -8,21 +8,25 @@ class User extends Authenticatable
 {
     protected $fillable = ['username', 'email', 'password'];
 
-    public function shops() {
+    public function shops()
+    {
         return $this->belongsToMany(Shop::class, 'reservations')
         ->as('reservation')
         ->withPivot('reservation_date', 'reservation_time', 'reservation_number');
     }
 
-    public function reservations() {
+    public function reservations()
+    {
         return $this->hasMany(Reservation::class);
     }
 
-    public function reviews() {
+    public function reviews()
+    {
         return $this->hasMany(Review::class);
     }
 
-    public function favorites() {
+    public function favorites()
+    {
         return $this->belongsToMany(Shop::class, 'favorites');
     }
 }

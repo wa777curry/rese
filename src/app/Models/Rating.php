@@ -8,7 +8,8 @@ class Rating extends Model
 {
     protected $fillable = ['reservation_id', 'rating', 'comment'];
 
-    public function reservation() {
+    public function reservation()
+    {
         return $this->belongsTo(Reservation::class);
     }
 }

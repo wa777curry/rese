@@ -5,29 +5,9 @@
     padding-bottom: 40px;
 }
 
-.reviews__main {
-    display: flex;
-    padding-bottom: 20px;
-    width: 100%;
-}
-
 .shop__detail,
 .reservation__form {
     flex: 1;
-}
-
-.shop__data {
-    flex: 2;
-    margin: 50px;
-}
-
-.reviews__form {
-    flex: 3;
-}
-
-.reviews__main h1,
-.reviews__main h2 {
-    font-weight: normal;
 }
 
 .reservation__form {
@@ -143,6 +123,106 @@
     all: unset;
 }
 
+.reviews__main {
+    display: flex;
+    padding-bottom: 20px;
+    width: 100%;
+}
+
+.shop__data {
+    border-right: 1px solid #999;
+    flex: 2;
+    padding: 40px;
+}
+
+.reviews__form {
+    flex: 3;
+    margin-left: 70px;
+}
+
+.reviews__main h1,
+.reviews__main h2,
+.reviews__main h5 {
+    font-weight: normal;
+}
+
+.reviews__main h1 {
+    margin-bottom: 50px;
+}
+
+.reviews__main h2 {
+    margin-bottom: 5px;
+}
+
+.reviews__main h5 {
+    margin-top: 0;
+    margin-right: 10%;
+    text-align: right;
+}
+
+.rate-form {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: flex-end;
+}
+
+.rate-form input[type=radio] {
+    display: none;
+}
+
+.rate-form label {
+    position: relative;
+    padding: 0 5px;
+    color: #999;
+    cursor: pointer;
+    font-size: 35px;
+}
+
+.rate-form label:hover {
+    color: #2988bc;
+}
+
+.rate-form label:hover~label {
+    color: #2988bc;
+}
+
+.rate-form input[type=radio]:checked~label {
+    color: #2988bc;
+}
+
+.textarea__review {
+    position: relative;
+}
+
+.placeholder {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    color: #999;
+    pointer-events: none;
+}
+
+.auto-bg {
+    background-color: transparent;
+    font-size: 120%;
+    height: 150px;
+    width: 90%;
+    resize: none;
+}
+
+/* フォーカス時の背景色とプレースホルダーの非表示 */
+.auto-bg.focused,
+.auto-bg.has-content,
+textarea:focus {
+    background-color: #fff;
+}
+
+/* フォーカスが当たったときにプレースホルダーを非表示にする */
+textarea:focus + .placeholder {
+    display: none;
+}
+
+/* バリデーションエラー表示 */
 .form__error {
     margin: 0 0 10px 20px;
     text-align: left;
