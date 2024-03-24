@@ -48,22 +48,22 @@
             <h2>体験を評価してください</h2>
         </div>
         <div class="rate-form">
-            <input id="star5" type="radio" name="rate" value="5">
+            <input id="star5" type="radio" name="rating" value="5">
             <label for="star5">★</label>
-            <input id="star4" type="radio" name="rate" value="4">
+            <input id="star4" type="radio" name="rating" value="4">
             <label for="star4">★</label>
-            <input id="star3" type="radio" name="rate" value="3">
+            <input id="star3" type="radio" name="rating" value="3">
             <label for="star3">★</label>
-            <input id="star2" type="radio" name="rate" value="2">
+            <input id="star2" type="radio" name="rating" value="2">
             <label for="star2">★</label>
-            <input id="star1" type="radio" name="rate" value="1">
+            <input id="star1" type="radio" name="rating" value="1">
             <label for="star1">★</label>
         </div>
         <div>
             <h2>口コミを投稿</h2>
         </div>
         <div class="textarea__review">
-            <textarea id="myTextarea" class="auto-bg" oninput="countCharacters()" maxlength="400"></textarea>
+            <textarea id="myTextarea" class="auto-bg" name="comment" oninput="countCharacters()" maxlength="400"></textarea>
             <label for="myTextarea" class="placeholder">カジュアルな夜のお出かけにおすすめのスポット</label>
         </div>
         <div>
@@ -72,12 +72,17 @@
         <div>
             <h2>画像の追加</h2>
         </div>
-        <textarea>クリックして写真を追加</textarea>
+        <!-- ファイルのドラッグアンドドロップエリア -->
+        <div id="dropArea" style="border: 2px dashed #ccc; padding: 20px; cursor: pointer;">
+            クリックして写真を追加<br>またはドラッグアンドドロップ
+        </div>
+        <div id="imagePreview"></div>
     </div>
 </div>
 <div><button>口コミを投稿</button></div>
 @endsection
 
 @push('scripts')
+<script src="{{ asset('js/drop.js') }}"></script>
 <script src="{{ asset('js/review.js') }}"></script>
 @endpush
