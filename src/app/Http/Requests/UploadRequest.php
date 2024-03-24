@@ -24,8 +24,8 @@ class UploadRequest extends FormRequest
     public function rules()
     {
         return [
-            'shop_name' => ['required', 'string', 'max:100'],
-            'shop_summary' => ['required', 'string', 'max:200'],
+            'shop_name' => ['required', 'string', 'max:50'],
+            'shop_summary' => ['required', 'string', 'max:400'],
         ];
     }
 
@@ -34,10 +34,10 @@ class UploadRequest extends FormRequest
         return [
             'shop_name.required' => '※店舗名を入力してください',
             'shop_name.string' => '※店舗名を文字列で入力してください',
-            'shop_name.max' => '※店舗名を100文字以下で入力してください',
+            'shop_name.max' => '※店舗名を50文字以下で入力してください',
             'shop_summary.required' => '※店舗概要を入力してください',
             'shop_summary.string' => '※店舗概要を文字列で入力してください',
-            'shop_summary.max' => '※店舗概要を200文字以下で入力してください',
+            'shop_summary.max' => '※店舗概要を400文字以下で入力してください',
         ];
     }
 }
