@@ -222,6 +222,53 @@ textarea:focus + .placeholder {
     display: none;
 }
 
+.dropArea {
+    background-color: #fff;
+    border: none;
+    cursor: pointer;
+    height: 150px;
+    padding: 10px;
+    position: relative;
+    width: 90%;
+}
+
+.dropArea input {
+    display: none;
+}
+
+#clickToAdd,
+#imagePreview {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#clickToAdd {
+    z-index: 1;
+    /* プレビュー画像より手前に表示 */
+}
+
+#imagePreview img {
+    max-width: 100%;
+    max-height: 100%;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+}
+
+.delete-button {
+    position: absolute;
+    top: 0;
+    right: 0;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
 /* バリデーションエラー表示 */
 .form__error {
     margin: 0 0 10px 20px;

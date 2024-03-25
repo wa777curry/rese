@@ -73,10 +73,16 @@
             <h2>画像の追加</h2>
         </div>
         <!-- ファイルのドラッグアンドドロップエリア -->
-        <div id="dropArea" style="border: 2px dashed #ccc; padding: 20px; cursor: pointer;">
-            クリックして写真を追加<br>またはドラッグアンドドロップ
+        <div id="dropArea" class="dropArea">
+            <div id="clickToAdd">
+                クリックして写真を追加<br>またはドラッグアンドドロップ
+            </div>
+            <!-- 画像選択後のプレビュー表示 -->
+            <div id="imagePreview" class="image-preview"></div>
+            <button type="button" id="deleteButton" onclick="deleteImage(event)" style="display: none;">×</button>
+            <!-- ファイル選択用の隠しinput -->
+            <input type="file" id="fileInput" style="display: none;" accept="image/*">
         </div>
-        <div id="imagePreview"></div>
     </div>
 </div>
 <div><button>口コミを投稿</button></div>
