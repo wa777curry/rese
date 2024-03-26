@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\ReservationController;
+use App\Http\Controllers\ReviewController;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\FavoriteController;
 
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
 
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
     Route::get('/reviews/{id}', [ShopController::class, 'reviews'])->name('reviews');
+    Route::post('/reviews/{id}', [ReviewController::class, 'postReviews'])->name('postReviews');
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');

@@ -44,48 +44,56 @@
 
     <!-- 予約フォーム -->
     <div class="reviews__form">
-        <div>
-            <h2>体験を評価してください</h2>
-        </div>
-        <div class="rate-form">
-            <input id="star5" type="radio" name="rating" value="5">
-            <label for="star5">★</label>
-            <input id="star4" type="radio" name="rating" value="4">
-            <label for="star4">★</label>
-            <input id="star3" type="radio" name="rating" value="3">
-            <label for="star3">★</label>
-            <input id="star2" type="radio" name="rating" value="2">
-            <label for="star2">★</label>
-            <input id="star1" type="radio" name="rating" value="1">
-            <label for="star1">★</label>
-        </div>
-        <div>
-            <h2>口コミを投稿</h2>
-        </div>
-        <div class="textarea__review">
-            <textarea id="myTextarea" class="auto-bg" name="comment" oninput="countCharacters()" maxlength="400"></textarea>
-            <label for="myTextarea" class="placeholder">カジュアルな夜のお出かけにおすすめのスポット</label>
-        </div>
-        <div>
-            <h5 id="characterCount" class="character-count">0/400（最高文字数）</h5>
-        </div>
-        <div>
-            <h2>画像の追加</h2>
-        </div>
-        <!-- ファイルのドラッグアンドドロップエリア -->
-        <div id="dropArea" class="dropArea">
-            <div id="clickToAdd">
-                クリックして写真を追加<br>またはドラッグアンドドロップ
+        <form action="{{ route('postReviews', ['id' => $shop->id]) }}" method="post" enctype="multipart/form-data">
+            @csrf
+            <div>
+                <div>
+                    <h2>体験を評価してください</h2>
+                </div>
+                <div class="rate-form">
+                    <input id="star5" type="radio" name="rating" value="5">
+                    <label for="star5">★</label>
+                    <input id="star4" type="radio" name="rating" value="4">
+                    <label for="star4">★</label>
+                    <input id="star3" type="radio" name="rating" value="3">
+                    <label for="star3">★</label>
+                    <input id="star2" type="radio" name="rating" value="2">
+                    <label for="star2">★</label>
+                    <input id="star1" type="radio" name="rating" value="1">
+                    <label for="star1">★</label>
+                </div>
+                <div>
+                    <h2>口コミを投稿</h2>
+                </div>
+                <div class="textarea__review">
+                    <textarea id="myTextarea" class="auto-bg" name="comment" oninput="countCharacters()" maxlength="400"></textarea>
+                    <label for="myTextarea" class="placeholder">カジュアルな夜のお出かけにおすすめのスポット</label>
+                </div>
+                <div>
+                    <h5 id="characterCount" class="character-count">0/400（最高文字数）</h5>
+                </div>
+                <div>
+                    <h2>画像の追加</h2>
+                </div>
+                <!-- ファイルのドラッグアンドドロップエリア -->
+                <div id="dropArea" class="dropArea">
+                    <div id="clickToAdd">
+                        クリックして写真を追加<br>またはドラッグアンドドロップ
+                    </div>
+                    <!-- 画像選択後のプレビュー表示 -->
+                    <div id="imagePreview" class="image-preview"></div>
+                    <button type="button" id="deleteButton" onclick="deleteImage(event)" style="display: none;">×</button>
+                    <!-- ファイル選択用の隠しinput -->
+                    <input type="file" id="fileInput" name="comment_url" style="display: none;" accept="image/*">
+                </div>
             </div>
-            <!-- 画像選択後のプレビュー表示 -->
-            <div id="imagePreview" class="image-preview"></div>
-            <button type="button" id="deleteButton" onclick="deleteImage(event)" style="display: none;">×</button>
-            <!-- ファイル選択用の隠しinput -->
-            <input type="file" id="fileInput" style="display: none;" accept="image/*">
-        </div>
+            <div class="submit__button">
+                <button type="submit">口コミを投稿</button>
+            </div>
+        </form>
     </div>
 </div>
-<div><button>口コミを投稿</button></div>
+
 @endsection
 
 @push('scripts')
