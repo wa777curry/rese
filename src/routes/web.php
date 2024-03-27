@@ -35,8 +35,8 @@ Route::middleware('auth')->group(function () {
     Route::get('/logout', [UserController::class, 'logout']);
 
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
-    Route::get('/reviews/{id}', [ShopController::class, 'reviews'])->name('reviews');
-    Route::post('/reviews/{id}', [ReviewController::class, 'postReviews'])->name('postReviews');
+    Route::get('/review/{id}', [ShopController::class, 'review'])->name('review');
+    Route::post('/review/{id}', [ReviewController::class, 'postReview'])->name('postReview');
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');

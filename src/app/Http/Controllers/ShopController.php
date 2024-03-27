@@ -55,10 +55,10 @@ class ShopController extends Controller
     }
 
     // 口コミ画面表示
-    public function reviews($id)
+    public function review($id)
     {
         $shop = Shop::find($id);
-        return view('reviews', compact('shop'));
+        return view('review', compact('shop'));
     }
 
     // マイページ表示

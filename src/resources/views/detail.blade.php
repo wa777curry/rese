@@ -20,8 +20,8 @@
         <div class="shop__detail--tag">#{{ $shop->area->area_name }}</div>
         <div class="shop__detail--tag">#{{ $shop->genre->genre_name }}</div>
         <div class="shop__detail--summary">{{ $shop->shop_summary }}</div>
-        <div class="shop__detail--reviews">
-            <a href="{{ route('reviews', ['id' => $shop->id]) }}">口コミを投稿する</a>
+        <div class="shop__detail--review">
+            <a href="{{ route('review', ['id' => $shop->id]) }}">口コミを投稿する</a>
         </div>
     </div>
 

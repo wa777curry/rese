@@ -29,11 +29,14 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // テキストエリアからフォーカスが外れたときの処理
     textarea.addEventListener('blur', function() {
-        if (this.value.trim() === '') {
-            this.classList.remove('focused', 'has-content');
-            placeholder.style.display = 'block'; // フォーカスが外れたとき、入力がない場合はプレースホルダーを表示
-        } else {
-            this.classList.remove('focused');
+        // バリデーションエラーが発生していない場合のみプレースホルダーを表示
+        if (!this.classList.contains('is-invalid')) {
+            if (this.value.trim() === '') {
+                this.classList.remove('focused', 'has-content');
+                placeholder.style.display = 'block'; // フォーカスが外れたとき、入力がない場合はプレースホルダーを表示
+            } else {
+                this.classList.remove('focused');
+            }
         }
     });
 });

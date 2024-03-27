@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ReviewRequest;
 use App\Models\Review;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
 class ReviewController extends Controller
 {
-    public function postReviews(Request $request, $id)
+    public function postReview(ReviewRequest $request, $id)
     {
         // ログインしているユーザーのIDを取得
         $userId = Auth::id();
