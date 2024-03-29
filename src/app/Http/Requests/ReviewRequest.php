@@ -2,7 +2,9 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\ReviewValidationRules;
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Support\Facades\Auth;
 
 class ReviewRequest extends FormRequest
 {
@@ -27,6 +29,7 @@ class ReviewRequest extends FormRequest
             'rating' => ['required', 'in:1,2,3,4,5'],
             'comment' => ['required', 'string', 'max:400'],
             'comment_url' => ['file', 'mimes:jpeg,png', 'max:2048'],
+            'shop_id' => ['required', new ReviewValidationRules(Auth::id())],
         ];
     }
 
@@ -40,6 +43,7 @@ class ReviewRequest extends FormRequest
             'comment_url.file' => '※画像ファイルを指定してください',
             'comment_url.mimes' => '※有効な画像形式（JPEG、PNG）を指定してください',
             'comment_url.max' => '※ファイルサイズは2MB以下にしてください',
+            'shop_id.required' => '※この店舗に対する口コミはすでに投稿されています',
         ];
     }
 }

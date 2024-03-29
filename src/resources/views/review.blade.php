@@ -105,6 +105,11 @@
             <div class="submit__button">
                 <button type="submit">口コミを投稿</button>
             </div>
+            <div class="form__error2">
+                @error('shop_id')
+                {{ $message }}
+                @enderror
+            </div>
         </form>
     </div>
 </div>

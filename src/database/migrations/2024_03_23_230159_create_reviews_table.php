@@ -21,6 +21,7 @@ class CreateReviewsTable extends Migration
             $table->text('comment');
             $table->string('comment_url')->nullable();
             $table->timestamps();
+            $table->unique(['user_id', 'shop_id']);
         });
     }
 

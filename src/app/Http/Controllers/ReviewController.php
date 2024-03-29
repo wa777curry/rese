@@ -23,7 +23,7 @@ class ReviewController extends Controller
 
         // 画像がアップロードされている場合は、保存してURLをデータベースに格納
         if ($request->hasFile('comment_url')) {
-            $imagePath = $request->file('comment_url')->store('uploads', 'public');
+            $imagePath = $request->file('comment_url')->store('reviews', 'public');
             $review->comment_url = $imagePath;
         }
 
