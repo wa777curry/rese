@@ -6,6 +6,7 @@ use App\Models\Area;
 use App\Models\Favorite;
 use App\Models\Genre;
 use App\Models\Reservation;
+use App\Models\Review;
 use App\Models\Shop;
 use DB;
 use Illuminate\Http\Request;
@@ -49,12 +50,15 @@ class ShopController extends Controller
     // 店舗詳細表示
     public function detail($id)
     {
+        // 店舗情報を取得
         $shop = Shop::find($id);
         list($times, $numbers) = $this->detailContent();
-        return view('detail', compact('shop', 'times', 'numbers'));
+        // 口コミを取得
+        $reviews = Review::where('shop_id', $id)->get();
+        return view('detail', compact('shop', 'times', 'numbers', 'reviews'));
     }
 
-    // 口コミ画面表示
+    // 口コミ投稿画面表示
     public function review($id)
     {
         $shop = Shop::find($id);

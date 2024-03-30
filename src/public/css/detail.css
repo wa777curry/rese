@@ -49,17 +49,65 @@
     margin: 20px auto;
 }
 
-.shop__detail--review {
-    margin-top: 20px;
+.review__button {
+    margin: 20px auto;
+    text-align: center;
+}
+
+.review__button button {
+    background-color: #2988bc;
+    border: none;
+    border-radius: 5px;
+    color: #fff;
+    font-size: 105%;
+    padding: 5px 0;
+    width: 100%;
+}
+
+.review-actions {
+    display: flex;
+    justify-content: right;
+}
+
+.review-actions button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 90%;
+    padding: 5px 10px;
     text-decoration: underline;
 }
 
-.shop__detail--review a:hover {
+.review-actions button:hover {
     color: #2988bc;
-    cursor: pointer;
     text-decoration: underline #2988bc;
 }
 
+/* 星表示 */
+.rate-form {
+    display: flex;
+    font-size: 25px;
+    justify-content: left;
+    pointer-events: none;
+}
+
+.star-empty {
+    color: #999;
+}
+
+.star-filled {
+    color: #2988bc;
+}
+
+.comment {
+    font-size: 90%;
+}
+
+hr {
+    margin: 20px 0;
+}
+
+/* 予約フォーム */
 .reservation__form--ttl {
     margin: 20px;
     font-weight: bold;

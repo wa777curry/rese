@@ -20,8 +20,75 @@
         <div class="shop__detail--tag">#{{ $shop->area->area_name }}</div>
         <div class="shop__detail--tag">#{{ $shop->genre->genre_name }}</div>
         <div class="shop__detail--summary">{{ $shop->shop_summary }}</div>
+        <!-- 表示の分岐 -->
         <div class="shop__detail--review">
+            @auth
+            @if($reviews->isEmpty())
+            <!-- ログインあり＆口コミなし -->
             <a href="{{ route('review', ['id' => $shop->id]) }}">口コミを投稿する</a>
+            <div class="review__button"><button>口コミはまだありません。</button></div>
+            @else
+            <!-- ログインあり＆口コミあり -->
+            <div class="review__button"><button>全ての口コミ情報</button></div>
+            <hr>
+            @foreach($reviews as $review)
+            @if($review->user_id == auth()->user()->id)
+            <!-- ログインユーザーが口コミの投稿者である場合にのみ編集・削除のリンクを表示 -->
+            <div class="review-actions">
+                <button class="edit-button"><a href="{{ route('editReview', ['id' => $review->id]) }}">口コミを編集</a></button>
+                <form action="{{ route('deleteReview', ['id' => $review->id]) }}" method="post" class="delete-form">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="delete-button">口コミを削除</button>
+                </form>
+            </div>
+            @endif
+            <div class="review">
+                <div>{{ $review->user->username }}</div>
+                <div class="rate-form">
+                    <!-- 星の表示 -->
+                    @for($i = 1; $i <= 5; $i++) @if($i <=$review->rating)
+                        <span class="star-filled">★</span>
+                        @else
+                        <span class="star-empty">★</span>
+                        @endif
+                        @endfor
+                </div>
+                <div class="comment">
+                    {!! nl2br(e($review->comment)) !!}
+                </div>
+            </div>
+            <hr>
+            @endforeach
+            @endif
+            @else
+            @if($reviews->isEmpty())
+            <!-- ログインなし＆口コミなし -->
+            <div><button>口コミはまだありません。</button></div>
+            @else
+            <!-- ログインなし＆口コミあり -->
+            <div><button>全ての口コミ情報</button></div>
+            <hr>
+            @foreach($reviews as $review)
+            <div class="review">
+                <div>{{ $review->user->username }}</div>
+                <div class="rate-form">
+                    <!-- 星の表示 -->
+                    @for($i = 1; $i <= 5; $i++) @if($i <=$review->rating)
+                        <span class="star-filled">★</span>
+                        @else
+                        <span class="star-empty">★</span>
+                        @endif
+                        @endfor
+                </div>
+                <div class="comment">
+                    <!-- コメントの表示 -->
+                    {!! nl2br(e($review->comment)) !!}
+                </div>
+            </div>
+            @endforeach
+            @endif
+            @endauth
         </div>
     </div>
 

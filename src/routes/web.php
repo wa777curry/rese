@@ -31,14 +31,20 @@ Route::get('/detail/{id}', [ShopController::class, 'detail'])->name('detail');
 
 Route::middleware('auth')->group(function () {
     Route::get('/thanks', [UserController::class, 'thanks']);
-
     Route::get('/logout', [UserController::class, 'logout']);
 
+    // 良客関連
     Route::post('/detail/{id}', [ReservationController::class, 'postReservation'])->name('postReservation');
-    Route::get('/review/{id}', [ShopController::class, 'review'])->name('review');
-    Route::post('/review/{id}', [ReviewController::class, 'postReview'])->name('postReview');
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
+    // 口コミ関連
+    Route::get('/review/{id}', [ShopController::class, 'review'])->name('review');
+    Route::post('/review/{id}', [ReviewController::class, 'postReview'])->name('postReview');
+    Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('editReview');
+    Route::put('/review/{id}', [ReviewController::class, 'updateReview'])->name('updateReview');
+    Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
+
+    // マイページ関連
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');
     Route::get('/mypage/favorite', [ShopController::class, 'getFavorite'])->name('getFavorite');
     Route::get('/mypage/reservation', [ShopController::class, 'getReservation'])->name('getReservation');
