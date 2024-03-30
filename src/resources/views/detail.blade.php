@@ -47,12 +47,12 @@
                 @if($review->user_id == auth()->user()->id)
                 <!-- ログインユーザーが口コミの投稿者である場合にのみ編集・削除のリンクを表示 -->
                 <div class="review-actions">
+                    <button class="edit-button"><a href="{{ route('editReview', ['id' => $review->id]) }}">口コミを編集</a></button>
                     <form action="{{ route('deleteReview', ['id' => $review->id]) }}" method="post" class="delete-form">
                         @csrf
                         @method('delete')
                         <button type="submit" class="delete-button">口コミを削除</button>
                     </form>
-                    <button class="edit-button"><a href="{{ route('editReview', ['id' => $review->id]) }}">口コミを編集</a></button>
                 </div>
                 @endif
                 <div class="review">

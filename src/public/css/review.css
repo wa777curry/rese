@@ -121,13 +121,22 @@ textarea:focus+.placeholder {
 }
 
 #clickToAdd {
-    z-index: 1;
-    /* プレビュー画像より手前に表示 */
+    z-index: 1; /* プレビュー画像より手前に表示 */
 }
 
-#imagePreview img {
+#deleteButton {
+    position: absolute;
+    top: 0;
+    left: -20%;
+}
+
+.image-preview img {
+    max-height: 120px;
     max-width: 100%;
-    max-height: 100%;
+}
+
+.hidden {
+    display: none;
 }
 
 .submit__button {

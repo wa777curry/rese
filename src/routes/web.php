@@ -38,11 +38,11 @@ Route::middleware('auth')->group(function () {
     Route::get('/done', [ReservationController::class, 'done'])->name('done');
 
     // 口コミ関連
-    Route::get('/review/{id}', [ShopController::class, 'review'])->name('review');
-    Route::post('/review/{id}', [ReviewController::class, 'postReview'])->name('postReview');
-    Route::get('/review/{id}/edit', [ReviewController::class, 'editReview'])->name('editReview');
-    Route::put('/review/{id}', [ReviewController::class, 'updateReview'])->name('updateReview');
-    Route::delete('/review/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
+    Route::get('/review/review/{id}', [ShopController::class, 'review'])->name('review');
+    Route::post('/review/review/{id}', [ReviewController::class, 'postReview'])->name('postReview');
+    Route::get('/review/review/{id}/edit', [ShopController::class, 'editReview'])->name('editReview');
+    Route::put('/review/review/{id}', [ReviewController::class, 'updateReview'])->name('updateReview');
+    Route::delete('/review/review/{id}', [ReviewController::class, 'deleteReview'])->name('deleteReview');
 
     // マイページ関連
     Route::get('/mypage', [ShopController::class, 'getMypage'])->name('mypage');

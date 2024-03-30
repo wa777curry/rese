@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ReviewRequest;
 use App\Models\Review;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Storage;
 
 class ReviewController extends Controller
 {
@@ -29,22 +30,31 @@ class ReviewController extends Controller
         }
 
         $review->save();
-
         return redirect()->route('detail', ['id' => $id])->with('success', '口コミが投稿されました');
     }
 
-    // 口コミ編集フォームを表示
-    public function editReview($id)
-    {
-        $review = Review::findOrFail($id);
-        return view('review.edit', compact('review'));
-    }
-
     // 口コミを更新
-    public function updateReview(Request $request, $id)
+    public function updateReview(ReviewRequest $request, $id)
     {
+        // 口コミの投稿IDを取得
         $review = Review::findOrFail($id);
-        $review->update($request->all());
+        // 編集した内容を更新（画像以外）
+        $review->update($request->only('rating', 'comment'));
+        // 削除フラグを取得
+        $deleteFlag = $request->input('deleteFlag');
+
+        // 画像がアップロードされている場合は、保存してURLをデータベースに格納
+        if ($request->hasFile('comment_url')) {
+            $imagePath = $request->file('comment_url')->store('reviews', 'public');
+            $review->comment_url = $imagePath;
+        } elseif ($deleteFlag) {
+            // 削除フラグがある場合は画像を削除し、データベースの画像フィールドをnullに設定
+            $review->comment_url = null;
+            // 画像を削除
+            Storage::disk('public')->delete(asset('storage/' . $review->comment_url));
+        }
+
+        $review->save();
         return redirect()->route('detail', ['id' => $review->shop_id])->with('success', '口コミが更新されました');
     }
 

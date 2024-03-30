@@ -32,6 +32,7 @@ function displayImagePreview(file) {
         imgElement.alt = 'プレビュー画像';
         imgElement.style.maxHeight = '120px'; // 画像の最大高を設定
         clickToAdd.style.display = 'none'; // "clickToAdd" 要素を非表示にする
+
         // 画像を表示するコンテナを取得
         const imageContainer = document.getElementById('imagePreview');
         // すでに画像が表示されている場合は削除
@@ -41,10 +42,13 @@ function displayImagePreview(file) {
         }
         // 画像を追加
         imageContainer.appendChild(imgElement);
-        // 画像が表示されたので削除ボタンを表示
+        // 削除ボタンを表示する前に存在を確認
         const deleteButton = document.getElementById('deleteButton');
-        deleteButton.style.display = 'inline-block';
+        if (deleteButton) {
+            deleteButton.style.display = 'inline-block'; // 画像が表示されたので削除ボタンを表示
+        }
     };
+
     reader.readAsDataURL(file); // 画像ファイルをData URL形式に変換
 }
 
@@ -65,10 +69,15 @@ function deleteImage(event) {
     deleteButton.style.display = 'none';
 
     // "clickToAdd" 要素を表示する
+    const clickToAdd = document.getElementById('clickToAdd');
     clickToAdd.style.display = 'block';
 
     // ファイル選択ボックスの値をクリアする
     fileInput.value = null;
+
+    // 削除フラグを設定する
+    const deleteFlagInput = document.getElementById('deleteFlagInput');
+    deleteFlagInput.value = '1';
 }
 
 // ファイルを処理する関数

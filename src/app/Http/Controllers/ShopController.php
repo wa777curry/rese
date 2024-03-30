@@ -62,7 +62,15 @@ class ShopController extends Controller
     public function review($id)
     {
         $shop = Shop::find($id);
-        return view('review', compact('shop'));
+        return view('review.review', compact('shop'));
+    }
+
+    // 口コミ編集フォーム画面表示
+    public function editReview($id)
+    {
+        $review = Review::findOrFail($id);
+        $shop = Shop::find($review->shop_id);
+        return view('review.review-edit', compact('shop', 'review'));
     }
 
     // マイページ表示
