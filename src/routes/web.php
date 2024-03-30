@@ -57,17 +57,21 @@ Route::middleware('auth')->group(function () {
     Route::get('/nofavorite/{shop}', [FavoriteController::class, 'nofavorite'])->name('nofavorite');
 });
 
-// 管理者向け
+// 管理者・店舗代表者用
 Route::prefix('admin')->group(function () {
     Route::get('/login', [AdminController::class, 'getAdmin'])->name('getAdmin');
     Route::post('/login', [AdminController::class, 'postAdmin'])->name('postAdmin');
 });
 
 Route::middleware(['auth:admin'])->group(function () {
+    // 管理者ページ関係
     Route::get('/admin', [AdminController::class, 'getManagement'])->name('getManagement');
     Route::post('/admin', [AdminController::class, 'postManagement'])->name('postManagement');
     Route::get('/list', [AdminController::class, 'listManagement'])->name('listManagement');
+    Route::get('/user-reviews', [AdminController::class, 'userReviews'])->name('userReviews');
+    Route::delete('/user-reviews/{review}', [AdminController::class, 'deleteReview'])->name('deleteReview');
 
+    // 店舗代表者ページ関係
     Route::get('/operation', [AdminController::class, 'getOperation'])->name('getOperation');
     Route::get('/upload', [AdminController::class, 'getUpload'])->name('getUpload');
     Route::post('/upload', [AdminController::class, 'postUpload'])->name('postUpload');

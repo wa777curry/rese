@@ -7,6 +7,7 @@ use App\Http\Requests\UploadRequest;
 use App\Models\Area;
 use App\Models\Genre;
 use App\Models\Representative;
+use App\Models\Review;
 use App\Models\Shop;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -56,6 +57,23 @@ class AdminController extends Controller
         $representatives = Representative::all();
         return view('admin.list', compact('representatives'));
     }
+
+    // ユーザー口コミ一覧の表示
+    public function userReviews()
+    {
+        $reviews = Review::all();
+        return view('admin.user-reviews', compact('reviews'));
+    }
+
+    // ユーザー口コミの削除処理
+    public function deleteReview($reviewId)
+    {
+        $review = Review::find($reviewId);
+        $review->delete();
+
+        return redirect()->route('userReviews');
+    }
+
 
     // 予約状況確認の表示
     public function getOperation()

@@ -16,6 +16,7 @@
         <div class="mypage__menu--ttl">
             <div class="mypage__menu--item"><a href="{{ route('getManagement') }}">店舗代表者登録</a></div>
             <div class="mypage__menu--item active"><a href="{{ route('listManagement') }}">店舗代表者一覧</a></div>
+            <div class="mypage__menu--item"><a href="{{ route('userReviews') }}">ユーザー口コミ一覧</a></div>
         </div>
     </div>
 
