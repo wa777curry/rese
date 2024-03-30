@@ -2,6 +2,7 @@
 
 namespace Database\Seeders;
 
+use App\Models\Review;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -21,5 +22,6 @@ class DatabaseSeeder extends Seeder
         $this->call(ShopsSeeder::class);
         $this->call(ReservationsSeeder::class);
         $this->call(RatingsSeeder::class);
+        $this->call(ReviewsSeeder::class);
     }
 }

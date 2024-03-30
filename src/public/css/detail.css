@@ -127,6 +127,9 @@ hr {
 }
 
 /* 予約フォーム */
+.reservation__form {
+    height: 700px;
+}
 .reservation__form--ttl {
     margin: 20px;
     font-weight: bold;
