@@ -99,8 +99,27 @@
     color: #2988bc;
 }
 
+.review__img img {
+    border-radius: 3px;
+    box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    margin: 10px 0;
+    max-height: 200px;
+    max-width: 250px;
+}
+
 .comment {
     font-size: 90%;
+    margin-top: 10px;
+}
+
+.no-review {
+    margin: 20px 0;
+    text-decoration: underline;
+}
+
+.no-review a:hover {
+    color: #2988bc;
+    text-decoration: underline;
 }
 
 hr {
