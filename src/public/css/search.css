@@ -1,16 +1,24 @@
 .header__search {
     background: #fff;
-    padding: 8px;
     border: none;
     border-radius: 5px;
     box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.3);
+    margin-left: 30px;
+    padding: 8px;
 }
 
+.sort__form,
 .search__form {
     display: flex;
     align-items: center;
 }
 
+.sort__form select {
+    padding-right: 15px;
+    width: auto;
+}
+
+.select__sort,
 .select__area,
 .select__genre,
 .keyword {

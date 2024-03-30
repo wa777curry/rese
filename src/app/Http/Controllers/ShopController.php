@@ -20,11 +20,19 @@ class ShopController extends Controller
         $areas = Area::all();
         $genres = Genre::all();
 
+        $randoms = [
+            'random' => 'ランダム',
+            'high_rating' => '評価が高い順',
+            'low_rating' => '評価が低い順',
+        ];
+
         $query = $this->shopData();
 
         $a = $request->input('a');
         $g = $request->input('g');
         $k = $request->input('k');
+        // デフォルトの並び順をID順に設定
+        $sortOption = $request->input('sort_option');
 
         if ($k !== null) {
             //全角を半角に
@@ -42,9 +50,37 @@ class ShopController extends Controller
         if ($g !== null) {
             $query->where('genre_id', '=', $g);
         }
+
+        // セレクトボックスからの選択オプションを取得
+        $sortOption = $request->input('sort_option');
+        // ランダムに並べ替える
+        if ($sortOption === 'random') {
+            $query->inRandomOrder();
+        } elseif ($sortOption == 'high_rating') {
+            // 評価が高い順に並べ替える
+            $query->orderBy('rating', 'desc');
+        } elseif ($sortOption == 'low_rating') {
+            // 評価が低い順に並べ替える
+            $query->orderBy('rating', 'asc');
+        }
+
+        // ランダムに並べ替える
+        if ($sortOption === 'random') {
+            $randomShops = $query->inRandomOrder()->get();
+        } elseif ($sortOption == 'high_rating') {
+            // 評価が高い順に並べ替える
+            $query->orderBy('rating', 'desc');
+        } elseif ($sortOption == 'low_rating') {
+            // 評価が低い順に並べ替える
+            $query->orderBy('rating', 'asc');
+        } else {
+            // セレクトボックスからの選択オプションがない場合は ID 順で並べ替える
+            $query->orderBy('id');
+        }
+
         $shops = $query->get();
 
-        return view('index', compact('shops', 'areas', 'genres', 'k', 'a', 'g'));
+        return view('index', compact('shops', 'areas', 'genres', 'k', 'a', 'g', 'randoms'));
     }
 
     // 店舗詳細表示
@@ -162,7 +198,6 @@ class ShopController extends Controller
         $query->join('areas', 'shops.area_id', '=', 'areas.id');
         $query->join('genres', 'shops.genre_id', '=', 'genres.id');
         $query->select('shops.*', 'areas.area_name', 'genres.genre_name', 'genres.image_url');
-        $query->orderBy('shops.id');
         return $query;
     }
 
