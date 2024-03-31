@@ -1,6 +1,6 @@
 # Rese（リーズ）　- 飲食店予約サービス
 
-![top画像](https://github.com/wa777curry/rese/assets/136479019/6009072d-2dd7-4bc0-9f5b-a9b32f3a3155)
+![A6D637ED-7556-4866-972E-B4A8218E3BBC](https://github.com/wa777curry/rese/assets/136479019/c0f8bc0b-5231-427b-9396-6f58a2375ee2)
 
 ## 作成した目的
 外部の飲食店予約サービスは手数料を取られるので自社で予約サービスを持ちたい
