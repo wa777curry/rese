@@ -15,7 +15,7 @@ class ReviewFactory extends Factory
     {
         // ユーザーと店舗のIDを配列で定義
         $userIds = range(2, 10);
-        $shopIds = range(1, 20);
+        $shopIds = range(2, 20);
 
         // 現在のインデックスを取得し、次のインデックスに移動する
         static $userIndex = 0;

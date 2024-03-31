@@ -53,26 +53,28 @@ class ShopController extends Controller
 
         // セレクトボックスからの選択オプションを取得
         $sortOption = $request->input('sort_option');
-        // ランダムに並べ替える
-        if ($sortOption === 'random') {
-            $query->inRandomOrder();
-        } elseif ($sortOption == 'high_rating') {
-            // 評価が高い順に並べ替える
-            $query->orderBy('rating', 'desc');
-        } elseif ($sortOption == 'low_rating') {
-            // 評価が低い順に並べ替える
-            $query->orderBy('rating', 'asc');
-        }
 
         // ランダムに並べ替える
         if ($sortOption === 'random') {
             $randomShops = $query->inRandomOrder()->get();
+        // 評価が高い順に並べ替える
         } elseif ($sortOption == 'high_rating') {
-            // 評価が高い順に並べ替える
-            $query->orderBy('rating', 'desc');
+            $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+                ->select('shops.*', 'areas.area_name', 'genres.genre_name', 'genres.image_url')
+                ->selectRaw('COALESCE(AVG(reviews.rating), 0) as average_rating')
+                ->groupBy('shops.id')
+                ->orderByRaw('average_rating = 0') // 評価がない店舗を末尾に追加
+                ->orderByDesc('average_rating')    // 評価がある店舗を評価の平均値で降順に並べ替える
+                ->orderBy('shops.id');             // その他の並び順をID順に設定
+        // 評価が低い順に並べ替える
         } elseif ($sortOption == 'low_rating') {
-            // 評価が低い順に並べ替える
-            $query->orderBy('rating', 'asc');
+            $query->leftJoin('reviews', 'shops.id', '=', 'reviews.shop_id')
+                ->select('shops.*', 'areas.area_name', 'genres.genre_name', 'genres.image_url')
+                ->selectRaw('COALESCE(AVG(reviews.rating), 0) as average_rating')
+                ->groupBy('shops.id')
+                ->orderByRaw('average_rating = 0') // 評価がない店舗を末尾に追加
+                ->orderBy('average_rating')    // 評価がある店舗を評価の平均値で昇順に並べ替える
+                ->orderBy('shops.id');             // その他の並び順をID順に設定
         } else {
             // セレクトボックスからの選択オプションがない場合は ID 順で並べ替える
             $query->orderBy('id');
