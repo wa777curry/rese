@@ -55,15 +55,14 @@ class ReviewController extends Controller
         }
 
         $review->save();
-        return redirect()->route('detail', ['id' => $review->shop_id])->with('success', '口コミが更新されました');
+        return redirect()->route('detail', ['id' => $review->shop_id]);
     }
 
     // 口コミを削除
     public function deleteReview($id)
     {
         $review = Review::findOrFail($id);
-        $shop_id = $review->shop_id;
         $review->delete();
-        return redirect()->route('detail', ['id' => $shop_id])->with('success', '口コミが削除されました');
+        return redirect()->back();
     }
 }

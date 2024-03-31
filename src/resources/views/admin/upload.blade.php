@@ -16,6 +16,7 @@
         <div class="mypage__menu--ttl">
             <div class="mypage__menu--item"><a href="{{ route('getOperation') }}">予約状況の確認</a></div>
             <div class="mypage__menu--item active"><a href="{{ route('getUpload') }}">店舗情報の登録</a></div>
+            <div class="mypage__menu--item"><a href="{{ route('getCsvUpload') }}">店舗情報の登録（CSV）</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getShoplist') }}">店舗情報一覧</a></div>
         </div>
     </div>
@@ -23,7 +24,7 @@
     <div class="mypage__content">
         <div class="mypage__content--section">
             <div class="mypage__content--item">店舗情報の登録</div>
-            <form action="{{ route('postUpload') }}" method="post">
+            <form action="{{ route('postUpload') }}" method="post" enctype="multipart/form-data">
                 @csrf
                 <div class="mypage__form">
                     <div class="login__form--text">

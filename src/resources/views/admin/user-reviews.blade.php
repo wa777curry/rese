@@ -41,7 +41,7 @@
                         <td nowrap>{{ $review->shop->shop_name }}</td>
                         <td>{{ $review->comment }}</td>
                         <td nowrap>
-                            <form action="{{ route('deleteReview', $review->id) }}" method="post">
+                            <form action="{{ route('deleteUserReview', $review->id) }}" method="post">
                                 @csrf
                                 @method('delete')
                                 <button type="submit" onclick="return confirm('口コミを削除しますか？')">削除する</button>

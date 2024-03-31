@@ -69,12 +69,15 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin', [AdminController::class, 'postManagement'])->name('postManagement');
     Route::get('/list', [AdminController::class, 'listManagement'])->name('listManagement');
     Route::get('/user-reviews', [AdminController::class, 'userReviews'])->name('userReviews');
-    Route::delete('/user-reviews/{review}', [AdminController::class, 'deleteReview'])->name('deleteReview');
+    Route::delete('/user-reviews/{id}', [AdminController::class, 'deleteUserReview'])->name('deleteUserReview');
 
     // 店舗代表者ページ関係
     Route::get('/operation', [AdminController::class, 'getOperation'])->name('getOperation');
     Route::get('/upload', [AdminController::class, 'getUpload'])->name('getUpload');
     Route::post('/upload', [AdminController::class, 'postUpload'])->name('postUpload');
+    Route::get('/csv-upload', [AdminController::class, 'getCsvUpload'])->name('getCsvUpload');
+    Route::post('/upload/csv', [AdminController::class, 'postCsvUpload'])->name('postCsvUpload');
+    Route::get('/import', [AdminController::class, 'importShoplist'])->name('importShoplist');
     Route::get('/edit/{id}', [AdminController::class, 'getEdit'])->name('getEdit');
     Route::post('/edit/{id}', [AdminController::class, 'postEdit'])->name('postEdit');
     Route::get('/shoplist', [AdminController::class, 'getShoplist'])->name('getShoplist');

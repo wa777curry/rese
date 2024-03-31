@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\RepresentativeRequest;
+use App\Http\Requests\ImportRequest;
 use App\Http\Requests\UploadRequest;
 use App\Models\Area;
 use App\Models\Genre;
@@ -66,14 +67,12 @@ class AdminController extends Controller
     }
 
     // ユーザー口コミの削除処理
-    public function deleteReview($reviewId)
+    public function deleteUserReview($id)
     {
-        $review = Review::find($reviewId);
+        $review = Review::find($id);
         $review->delete();
-
-        return redirect()->route('userReviews');
+        return redirect()->back();
     }
-
 
     // 予約状況確認の表示
     public function getOperation()
@@ -106,6 +105,60 @@ class AdminController extends Controller
             'shop_summary' => $request->input('shop_summary'),
         ]);
         return redirect()->route('getShoplist');
+    }
+
+    // 店舗情報登録（CSV)の表示
+    public function getCsvUpload(Request $request)
+    {
+        return view('admin.csv-upload');
+    }
+
+    // 店舗の読み込み処理（csv）
+    public function postCsvUpload(ImportRequest $request)
+    {
+        // CSVファイルの取得
+        $file = $request->file('csv_file');
+
+        // CSVファイルを1行ずつ読み込み、処理
+        if (($handle = fopen($file->getPathname(), 'r')) !== false) {
+            // ヘッダー行をスキップ
+            fgetcsv($handle);
+
+            $shops = []; // 店舗データを格納する配列
+
+            while (($data = fgetcsv($handle, 1000, ',')) !== false) {
+                // CSVからデータを取得し、処理する
+                $representativeId = $data[0]; // 代表者ID
+                $shopName = $data[1]; // 店舗名
+                $areaName = $data[2]; // エリア名
+                $genreName = $data[3]; // ジャンル名
+                $shopSummary = $data[4]; // 店舗概要
+
+                $shops[] = [
+                    'representative_id' => $representativeId,
+                    'shop_name' => $shopName,
+                    'area_name' => $areaName,
+                    'genre_name' => $genreName,
+                    'shop_summary' => $shopSummary,
+                ];
+            }
+            fclose($handle);
+
+            // セッションにデータを保存
+            session(['imported_shops' => $shops]);
+
+            // ビューに店舗データを渡して一覧表示
+            return view('admin.import', compact('shops'));
+        }
+    }
+
+    // csv読み込み一覧表示
+    public function importShoplist()
+    {
+        // セッションからデータを取得
+        $shops = session('imported_shops', []);
+
+        return view('admin.import', compact('shops'));
     }
 
     // 店舗登録一覧の表示

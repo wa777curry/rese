@@ -16,6 +16,7 @@
         <div class="mypage__menu--ttl">
             <div class="mypage__menu--item active"><a href="{{ route('getOperation') }}">予約状況の確認</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getUpload') }}">店舗情報の登録</a></div>
+            <div class="mypage__menu--item"><a href="{{ route('getCsvUpload') }}">店舗情報の登録（CSV）</a></div>
             <div class="mypage__menu--item"><a href="{{ route('getShoplist') }}">店舗情報一覧</a></div>
         </div>
     </div>
